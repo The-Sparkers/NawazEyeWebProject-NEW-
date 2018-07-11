@@ -3,10 +3,11 @@
 {
     using (Html.BeginForm("LogOff", "Account", FormMethod.Post, new { id = "logoutForm" }))
     {
-        Html.AntiForgeryToken();
+        @Html.AntiForgeryToken();
 <div id="loginBtn">
             @Html.ActionLink(User.Identity.GetUserName(), "Index", "Manage", new { @class = "w3-flat-alizarin" })
 </div>
+        
             <a href="javascript:document.getElementById('logoutForm').submit()">Log off</a>
     }
 }

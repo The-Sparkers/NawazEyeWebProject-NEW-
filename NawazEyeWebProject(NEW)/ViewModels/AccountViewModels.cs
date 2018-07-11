@@ -1,5 +1,4 @@
-﻿using NawazEyeWebProject_NEW_.Models;
-using System.Collections.Generic;
+﻿using System.Collections.Generic;
 using System.ComponentModel.DataAnnotations;
 
 namespace NawazEyeWebProject_NEW_.ViewModels
