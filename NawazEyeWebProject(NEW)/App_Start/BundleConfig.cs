@@ -9,8 +9,13 @@ namespace NawazEyeWebProject_NEW_
         public static void RegisterBundles(BundleCollection bundles)
         {
             bundles.Add(new ScriptBundle("~/bundles/jquery").Include(
-                        "~/Scripts/jquery-{version}.js"));
+                        "~/Scripts/jquery-3.3.1.js",
+                        "~/Scripts/jquery-3.3.1.min.js"));
 
+            bundles.Add(new ScriptBundle("~/bundles/customScripts").Include(
+                        "~/Scripts/npm.js",
+                        "~/Scripts/hotItemsSlider.js",
+                        "~/Scripts/LayoutCustomJquery.js"));
             bundles.Add(new ScriptBundle("~/bundles/jqueryval").Include(
                         "~/Scripts/jquery.validate*"));
 
@@ -21,11 +26,17 @@ namespace NawazEyeWebProject_NEW_
 
             bundles.Add(new ScriptBundle("~/bundles/bootstrap").Include(
                       "~/Scripts/bootstrap.js",
-                      "~/Scripts/respond.js"));
+                      "~/Scripts/respond.js",
+                      "~/Scripts/bootstrp.min.js",
+                      "~/Scripts/respond.min.js"));
 
             bundles.Add(new StyleBundle("~/Content/css").Include(
                       "~/Content/bootstrap.css",
-                      "~/Content/site.css"));
+                      "~/Content/style.css",
+                      "~/Content/bootstrap.min.css",
+                      "~/Content/customCss.css",
+                      "~/Content/w3-colors-flat.css",
+                      "~/Content/w3colors-metro.css"));
         }
     }
 }

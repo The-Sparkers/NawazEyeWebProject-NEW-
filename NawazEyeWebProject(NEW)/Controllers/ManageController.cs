@@ -6,7 +6,7 @@ using System.Web.Mvc;
 using Microsoft.AspNet.Identity;
 using Microsoft.AspNet.Identity.Owin;
 using Microsoft.Owin.Security;
-using NawazEyeWebProject_NEW_.Models;
+using NawazEyeWebProject_NEW_.ViewModels;
 
 namespace NawazEyeWebProject_NEW_.Controllers
 {

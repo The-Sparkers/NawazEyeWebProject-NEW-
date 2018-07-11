@@ -3,42 +3,99 @@
 <head>
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>@ViewBag.Title - My ASP.NET Application</title>
+    <title>Eye World Opticians | @ViewBag.Title</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
     @Styles.Render("~/Content/css")
-    @Scripts.Render("~/bundles/modernizr")
-
 </head>
 <body>
-    <div class="navbar navbar-inverse navbar-fixed-top">
-        <div class="container">
-            <div class="navbar-header">
-                <button type="button" class="navbar-toggle" data-toggle="collapse" data-target=".navbar-collapse">
-                    <span class="icon-bar"></span>
-                    <span class="icon-bar"></span>
-                    <span class="icon-bar"></span>
-                </button>
-                @Html.ActionLink("Application name", "Index", "Home", new { area = "" }, new { @class = "navbar-brand" })
+    <!--Header-->
+    <div id="header" class="container-fluid headerContainer w3-flat-clouds">
+        <div class="row">
+            <div class="col-md-2 col-lg-2 col-sm-2col-xs-2">
+                <img src="../images/Shared/HeadLogo.png" class="img-circle" width="125" height="40" />
             </div>
-            <div class="navbar-collapse collapse">
-                <ul class="nav navbar-nav">
-                    <li>@Html.ActionLink("Home", "Index", "Home")</li>
-                    <li>@Html.ActionLink("About", "About", "Home")</li>
-                    <li>@Html.ActionLink("Contact", "Contact", "Home")</li>
-                </ul>
-                @Html.Partial("_LoginPartial")
+            <div class="col-md-6">
+            </div>
+            <div class="col-md-2 col-lg-2 col-sm-2 col-xs-2" id="addressBar" align="center">
+                <p class="headitems">Need Help?<br /><span class="glyphicon glyphicon-phone"></span>&nbsp;03074172327</p>
+            </div>
+            <div class="col-md-2 col-lg-2 col-sm-2 col-xs-2 headitems" align="right">
+              @Html.Partial("_LoginPartial")  
+                
             </div>
         </div>
     </div>
-    <div class="container body-content">
-        @RenderBody()
-        <hr />
-        <footer>
-            <p>&copy; @DateTime.Now.Year - My ASP.NET Application</p>
-        </footer>
+    <!--Menu & Logo-->
+    <div class="container-fluid menu">
+        <div class="row">
+            <div class="col-md-4 col-lg-4 col-sm-4 col-xs-4">
+                <!--Logo-->
+                <table>
+                    <tr>
+                        <td class="w3-flat-belize-hole" id="logo"><h2><font color="#FFFFFF" face="Comic Sans MS, cursive">Eye World</font></h2><h4 align="center">Opticians</h4></td>
+                    </tr>
+                </table>
+            </div>
+            <!--Menu-->
+            <div class= "col-lg-8 col-sm-8 col-xs-8 col-md-8">
+                <div class="container-fluid">
+                    <div class="row">
+                        <div class="col-lg-12 col-sm-12 col-xs-12 col-md-12">
+                            <ul class="menuItems">
+                              <li>
+                                  @Html.Partial("_CartIcon")
+                              </li>
+                                <li>@Html.ActionLink("Frames", "Index", "Frames")</li>
+                                <li>@Html.ActionLink("Sunglasses", "Index", "Sunglasses")</li>
+                                <li>@Html.ActionLink("Home", "Index", "Home")</li>
+                            </ul>
+                        </div>
+                    </div>
+               </div>
+            </div>
+        </div>
     </div>
+    <!--Start of Body-->
 
+    @RenderBody()
+
+    <!--End of Body-->
+    <!--Footer-->
+    <div class="footer">
+        <div class="container-fluid">
+            <div class="row">
+                <div class="col-md-12 col-lg-12 col-sm-12 col-xs-12">
+                    <div class="container-fluid footer">
+                        <div class="row">
+                            <div class="col-md-4 col-xs-5">
+                                <p>&copy;2018 All Rights Reserved by: Eye World Opticians</p>
+                            </div>
+                            <div class="col-md-6 col-xs-1">
+                            </div>
+                            <div class="col-md-2 col-xs-4 footerItem">
+                                <p>
+                                    <a href="#" title="Facebook"><span class="fa fa-facebook-square"></span></a>
+                                    <a href="#" title="Twitter"><span class="fa fa-twitter-square"></span></a>
+                                    <a href="#" title="Google"><span class="fa fa-google-plus-square"></span></a>
+                                </p>
+                            </div>
+                        </div>
+                        <div class="row">
+                            <div class="col-md-12 designedby">
+                                <p>Designed & Developed By: <a href="http://sparkers.tk" target="_blank">The Sparkers</a></p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+            </div>
+        </div>
+    </div>
+    
     @Scripts.Render("~/bundles/jquery")
     @Scripts.Render("~/bundles/bootstrap")
-    @RenderSection("scripts", required: false)
+    @Scripts.Render("~/bundles/modernizr")
+    @Scripts.Render("~/bundles/customScripts")
+    @RenderSection("Scripts", required: false)
 </body>
 </html>

@@ -5,7 +5,7 @@ using Microsoft.Owin;
 using Microsoft.Owin.Security.Cookies;
 using Microsoft.Owin.Security.Google;
 using Owin;
-using NawazEyeWebProject_NEW_.Models;
+using NawazEyeWebProject_NEW_.ViewModels;
 
 namespace NawazEyeWebProject_NEW_
 {

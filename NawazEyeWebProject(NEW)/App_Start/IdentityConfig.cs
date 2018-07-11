@@ -10,7 +10,7 @@ using Microsoft.AspNet.Identity.EntityFramework;
 using Microsoft.AspNet.Identity.Owin;
 using Microsoft.Owin;
 using Microsoft.Owin.Security;
-using NawazEyeWebProject_NEW_.Models;
+using NawazEyeWebProject_NEW_.ViewModels;
 
 namespace NawazEyeWebProject_NEW_
 {

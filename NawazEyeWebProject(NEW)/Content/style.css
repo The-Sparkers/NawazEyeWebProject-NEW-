@@ -1,0 +1,241 @@
+﻿@charset "utf-8";
+/* CSS Document */
+.WithoutBullet{
+    list-style:none
+}
+.RegisterLink{
+    text-decoration:none;
+    font-size:10px;
+    color:blueviolet
+}
+.RegisterLink:hover{
+    text-decoration:none;
+    color:blue
+}
+#logo{
+	border-top-left-radius:20px; 
+	border-bottom-right-radius:20px; 
+	padding-left:5px; 
+	padding-right:5px;
+}
+#loginBtn{
+	margin-top:8px
+}
+#loginBtn a { 
+	font-family:"Times New Roman", Times, serif; 
+	font-size:18px; 
+	font-weight:bold; 
+	color:#FFF; 
+	padding-left:1px; 
+	padding-right:1px;
+	padding-top:10px; 
+	padding-bottom:5px
+}
+#loginBtn a:hover{
+	background:#C00; 
+	font-style:normal; 
+	color:#FFF; 
+	text-decoration:none
+}
+#loginBtn ul{
+	list-style:none;
+}
+#loginBtn ul li{
+	display:none;
+	background-color:#C30;
+	color:#FFF;
+	opacity:.7;
+}
+#loginBtn ul li ul li:hover{
+	background-color:#C60;
+}
+#loginBtn ul li:hover ul li{
+	display:block;
+}
+
+.headitems{
+	font:"MS Serif", "New York", serif;
+	font-weight:normal; 
+	font-size:11px
+}
+.headerContainer{
+	margin-top:0px; 
+	border-bottom-style:solid; 
+	border-bottom-color:#CCC; 
+	border-bottom-width:thin;  
+}
+.menu{
+	margin-top:5px
+}
+.menuItems{
+	alignment-adjust:middle
+}
+.menuItems li{
+	float:right; 
+	list-style-type:none; 
+	margin:10px; 
+	padding:10px
+}
+.menuItems li a{
+	font-size:18px; 
+	font-weight:bold; 
+	font-family:Arial, Helvetica, sans-serif; 
+	color:#000; 
+	display:block
+}
+.menuItems li a:hover{
+	text-decoration:none;
+}
+.menuActive{
+	text-outline:#900
+}
+.secHeading{
+	text-align-last:center; 
+	font-family:"Comic Sans MS", cursive; 
+	font-size:24px; 
+	font-weight:normal; 
+	margin-top:10px;
+}
+#addressBar{
+	color:#000
+}
+.headerOp{
+	opacity:0.75
+}
+.sunop{}
+.sunop a{
+	font-weight:bold; 
+	font-family:Arial, Helvetica, sans-serif; 
+	color:#FFF; 
+	margin-top:170px; 
+	text-decoration:none; 
+	font-size:18px;
+}
+.sunop a{
+	bottom:8px; 
+	right:16px
+}
+.sunopImage{
+	left:0px; 
+	right:5px; 
+	width:95%; 
+	height:100%; 
+	margin-left:5px
+}
+.sunopImage:hover{
+	opacity:.5
+}
+.sunop a:hover{
+	text-decoration:none; 
+	color:#003; 
+}
+.hotItems:hover{opacity:.5; 
+height:220px
+}
+.itemLink{
+	font-family:Verdana, Geneva, sans-serif;
+	font-size:10px;
+	font-stretch:expanded;
+	font-style:normal;
+	font-weight:600;
+	color:#000;
+	text-align:center
+}
+.itemLink:hover{
+	font-size:11px;
+	color:#000
+}
+.itemcell{
+	padding-top:2px;
+	text-align:center
+}
+.hotItems{
+	width:95vh;
+	height:95vh;
+}
+.footer{
+	font-size:12px;
+	font-style:italic;
+	text-decoration:underline;
+	background-color:black;
+	color:#FFF;
+}
+.footerItem{
+	border-left:thin;
+	border-left-color:#666;
+	border-left-style:solid;
+}
+.footerItem p{
+	font-size:24px;
+	text-align:right;
+	float:right;
+}
+.footerItem p a:hover{
+	color:#FFF;
+}
+.designedby{
+	text-align:center;
+	font-family:"Times New Roman", Times, serif;
+	font-size:12px;
+}
+.designedby p a:hover{
+	font-size:14px;
+	color:#FFF;
+}
+.addToCartBtn{
+	background-color:#C30;
+	font-size:12px;
+	color:#FFF;
+	font-weight:700;
+	text-align:center;
+}
+.addToCartBtn a{
+	font-size:16px;
+	font-weight:normal;
+	color:#FFF;
+}
+.viewItemBtn{
+	background-color:#06F;
+	text-align:center;
+	
+}
+.viewItemBtn a{
+	font-size:16px;
+	font-weight:normal;
+	color:#FFF;
+}
+.addToCartBtn:hover{
+	background-color:#930;
+	text-decoration:underline;
+	color:#FFF;
+}
+.addToCartBtn a:hover{
+	text-decoration:none;
+	color:#FFF;
+}
+.viewItemBtn:hover{
+	background-color:#06C;
+	text-decoration:underline;
+	color:#FFF;
+}
+.viewItemBtn a:hover{
+	font-size:16px;
+	font-weight:normal;
+	text-decoration:none;
+	color:#FFF;
+}
+.showingItems{
+	font-size:16px;
+	font:"Comic Sans MS", cursive;
+	color:#000;
+	text-decoration:underline;
+	text-align:center;
+	font-weight:bold;
+}
+.showingItemsPrice{
+	font-size:16px;
+	font:"Comic Sans MS", cursive;
+	color:#000;
+	font-weight:lighter;
+	text-align:center;
+}
