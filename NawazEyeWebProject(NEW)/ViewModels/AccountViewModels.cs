@@ -8,6 +8,25 @@ namespace NawazEyeWebProject_NEW_.ViewModels
         [Required]
         [Display(Name = "Email")]
         public string Email { get; set; }
+        [Required]
+        [Display(Name ="Full Name")]
+        public string FullName { get; set; }
+        [Required]
+        [Phone]
+        [Display(Name ="Phone Number")]
+        [DisplayFormat(DataFormatString ="+92-{n}")]
+        [StringLength (10,ErrorMessage ="Please Enter A Valid Phone Number", MinimumLength = 10)]
+        public string PhoneNumber { get; set; }
+        [Required]
+        [Display(Name ="City")]
+        public string City { get; set; }
+        [Required]
+        [Display(Name ="Address")]
+        public string Address { get; set; }
+        [Required]
+        [Display(Name ="Username")]
+        [StringLength(20, ErrorMessage = "The {0} must be at least {2} characters long.", MinimumLength = 3)]
+        public string Username { get; set; }
     }
 
     public class ExternalLoginListViewModel
@@ -73,6 +92,7 @@ namespace NawazEyeWebProject_NEW_.ViewModels
         public string Email { get; set; }
         [Required]
         [Phone]
+        [DisplayFormat(DataFormatString = "+92-{n}")]
         [Display(Name = "Phone Number")]
         public string PhoneNumber { get; set; }
         [Required]

@@ -202,7 +202,9 @@
     <Content Include="favicon.ico" />
     <Content Include="fonts\glyphicons-halflings-regular.svg" />
     <Content Include="Global.asax" />
+    <Content Include="images\Accounts\loginAccount.jpg" />
     <Content Include="images\Accounts\registerAccount.jpg" />
+    <Content Include="images\Accounts\registerExternalLogin.jpg" />
     <Content Include="images\Home\Box-Optics-50-.jpg" />
     <Content Include="images\Home\Box-Sunglasses-50.jpg" />
     <Content Include="images\Home\featuredFrame1.jpg" />
@@ -245,6 +247,7 @@
     <Content Include="images\Uploads\1013_3.jpg" />
     <Content Include="images\Uploads\1013_4.jpg" />
     <Content Include="images\Uploads\1013_5.jpg" />
+    <Content Include="Scripts\FacebookAuthentication.js" />
     <Content Include="Scripts\bootstrap.js" />
     <Content Include="Scripts\bootstrap.min.js" />
     <Content Include="Scripts\hotItemsSlider.js" />

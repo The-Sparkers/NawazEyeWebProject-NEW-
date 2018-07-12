@@ -34,7 +34,7 @@ namespace NawazEyeWebProject_NEW_
                         validateInterval: TimeSpan.FromMinutes(30),
                         regenerateIdentity: (manager, user) => user.GenerateUserIdentityAsync(manager))
                 }
-            });            
+            });
             app.UseExternalSignInCookie(DefaultAuthenticationTypes.ExternalCookie);
 
             // Enables the application to temporarily store user information when they are verifying the second factor in the two-factor authentication process.
@@ -54,15 +54,15 @@ namespace NawazEyeWebProject_NEW_
             //   consumerKey: "",
             //   consumerSecret: "");
 
-            //app.UseFacebookAuthentication(
-            //   appId: "",
-            //   appSecret: "");
+            app.UseFacebookAuthentication(
+               appId: "851021305095066",
+               appSecret: "4026d6e7c1ff0710b75f39946360c726");
 
-            //app.UseGoogleAuthentication(new GoogleOAuth2AuthenticationOptions()
-            //{
-            //    ClientId = "",
-            //    ClientSecret = ""
-            //});
+            app.UseGoogleAuthentication(new GoogleOAuth2AuthenticationOptions()
+            {
+                ClientId = "644748381420-nv15j4cg7kjap8tja5ln154cci8m6rlf.apps.googleusercontent.com",
+                ClientSecret = "JUXAs8zxwLMOs5UnGs5NirZL"
+            });
         }
     }
 }

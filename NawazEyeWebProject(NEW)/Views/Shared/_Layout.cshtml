@@ -20,8 +20,8 @@
                 <p class="headitems">Need Help?<br /><span class="glyphicon glyphicon-phone"></span>&nbsp;03074172327</p>
             </div>
             <div class="col-md-2 col-lg-2 col-sm-2 col-xs-2 headitems" align="right">
-              @Html.Partial("_LoginPartial")  
-                
+                @Html.Partial("_LoginPartial")
+
             </div>
         </div>
     </div>
@@ -37,27 +37,32 @@
                 </table>
             </div>
             <!--Menu-->
-            <div class= "col-lg-8 col-sm-8 col-xs-8 col-md-8">
+            <div class="col-lg-8 col-sm-8 col-xs-8 col-md-8">
                 <div class="container-fluid">
                     <div class="row">
                         <div class="col-lg-12 col-sm-12 col-xs-12 col-md-12">
                             <ul class="menuItems">
-                              <li>
-                                  @Html.Partial("_CartIcon")
-                              </li>
+                                <li>
+                                    @Html.Partial("_CartIcon")
+                                </li>
                                 <li>@Html.ActionLink("Frames", "Index", "Frames")</li>
                                 <li>@Html.ActionLink("Sunglasses", "Index", "Sunglasses")</li>
                                 <li>@Html.ActionLink("Home", "Index", "Home")</li>
                             </ul>
                         </div>
                     </div>
-               </div>
+                </div>
             </div>
         </div>
     </div>
     <!--Start of Body-->
-
-    @RenderBody()
+    <div class="container-fluid">
+        <div class="row">
+            <div class="col-md-12">
+                @RenderBody()
+            </div>
+        </div>
+    </div>
 
     <!--End of Body-->
     <!--Footer-->
@@ -91,7 +96,7 @@
             </div>
         </div>
     </div>
-    
+
     @Scripts.Render("~/bundles/jquery")
     @Scripts.Render("~/bundles/bootstrap")
     @Scripts.Render("~/bundles/modernizr")

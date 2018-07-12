@@ -331,7 +331,6 @@ namespace NawazEyeWebProject_NEW_.Controllers
             {
                 return RedirectToAction("Login");
             }
-
             // Sign in the user with this external login provider if the user already has a login
             var result = await SignInManager.ExternalSignInAsync(loginInfo, isPersistent: false);
             switch (result)
@@ -347,7 +346,7 @@ namespace NawazEyeWebProject_NEW_.Controllers
                     // If the user does not have an account, then prompt the user to create an account
                     ViewBag.ReturnUrl = returnUrl;
                     ViewBag.LoginProvider = loginInfo.Login.LoginProvider;
-                    return View("ExternalLoginConfirmation", new ExternalLoginConfirmationViewModel { Email = loginInfo.Email });
+                    return View("ExternalLoginConfirmation", new ExternalLoginConfirmationViewModel { Email = loginInfo.Email, Username=loginInfo.DefaultUserName });
             }
         }
 
@@ -371,11 +370,14 @@ namespace NawazEyeWebProject_NEW_.Controllers
                 {
                     return View("ExternalLoginFailure");
                 }
-                var user = new ApplicationUser { UserName = model.Email, Email = model.Email };
+                var user = new ApplicationUser { UserName = model.Username, Email = model.Email, PhoneNumber=model.PhoneNumber };
                 var result = await UserManager.CreateAsync(user);
                 if (result.Succeeded)
                 {
                     result = await UserManager.AddLoginAsync(user.Id, info.Login);
+                    City c = new City(Convert.ToInt32(model.City));
+                    Buyer b = new Buyer(model.FullName, model.PhoneNumber, model.Address, model.Email, c);
+                    b.SetAccount(user.Id);
                     if (result.Succeeded)
                     {
                         await SignInManager.SignInAsync(user, isPersistent: false, rememberBrowser: false);
