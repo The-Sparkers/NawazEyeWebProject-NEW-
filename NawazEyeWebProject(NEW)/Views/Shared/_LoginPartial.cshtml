@@ -5,19 +5,19 @@
     {
         @Html.AntiForgeryToken();
 <div id="loginBtn">
-            @Html.ActionLink(User.Identity.GetUserName(), "Index", "Manage", new { @class = "w3-flat-alizarin" })
+            @Html.ActionLink(User.Identity.GetUserName(), "Index", "Manage", new { @class = "w3-flat-belize-hole" })
 </div>
         
-            <a href="javascript:document.getElementById('logoutForm').submit()">Log off</a>
+            <a href="javascript:document.getElementById('logoutForm').submit()" class="RegisterLink">Log off</a>
     }
 }
 else
 {
 
             <div id="loginBtn">
-                @Html.ActionLink("My Account", "Login", "Account", routeValues: null, htmlAttributes: new { id = "loginLink", @class = "w3-flat-alizarin" })
+                @Html.ActionLink("My Account", "Login", "Account", routeValues: null, htmlAttributes: new { id = "loginLink", @class = "w3-flat-belize-hole" })
 </div>
-            @Html.ActionLink("Register", "Register", "Account", routeValues: null, htmlAttributes: new { id = "registerLink", @class= "alert-link" })
+            @Html.ActionLink("Register", "Register", "Account", routeValues: null, htmlAttributes: new { id = "registerLink", @class= "alert-link RegisterLink" })
 
 
 }

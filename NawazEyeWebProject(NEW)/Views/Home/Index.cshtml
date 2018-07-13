@@ -1,6 +1,12 @@
 ﻿@{
     ViewBag.Title = "Home";
     Layout = "~/Views/Shared/_Layout.cshtml";
+    string parallaxClass = "parallax";
+    string s = Request.UserAgent;
+    if (!s.Contains("Edge") || s.Contains("Firefox"))
+    {
+        parallaxClass += "2";
+    }
 }
 
 <!--Slider-->
@@ -19,23 +25,20 @@
 <div class="container-fluid">
     <div class="row">
         <!--Main Container-->
+        <!--Start Parallex-->
+        <!--End Paralex-->
         <div class="col-md-8 col-xs-12 col-sm-8 col-lg-8">
-            <table class="table-responsive">
-                <tr>
-                    <td class="">
-                        <a href="#">
-                            <img src="../images/Home/Box-Sunglasses-50.jpg" class="sunopImage" alt="Sunglasses" />
-                            <p></p>
-                        </a>
-                    </td>
-                    <td class="">
-                        <a href="#">
-                            <img src="../images/Home/Box-Optics-50-.jpg" class="sunopImage" alt="Opticals" />
-                            <p></p>
-                        </a>
-                    </td>
-                </tr>
-            </table>
+            <div class="@parallaxClass">
+
+                <header>
+                    <div class="parallexTextBackground">
+                        <h1 class="parallexText">Eye World</h1>
+                    </div>
+                    <div class="w3-flat-pomegranate col-md-2 viewStoreBtn col-md-offset-5">
+                        <h6><a href="#">View Store</a></h6>
+                    </div>
+                </header>
+            </div>
         </div>
         <!--Promotion Contianer-->
         <div class="col-md-4 col-lg-4 col-sm-4 col-xs-12">

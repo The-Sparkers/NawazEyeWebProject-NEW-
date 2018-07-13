@@ -219,6 +219,7 @@
     <Content Include="images\Home\hotSeller1.jpg" />
     <Content Include="images\Home\hotSeller2.jpg" />
     <Content Include="images\Home\hotSeller3.jpg" />
+    <Content Include="images\Home\parallexImage.jpg" />
     <Content Include="images\Home\SliderImg1.jpg" />
     <Content Include="images\Home\SliderImg2.jpg" />
     <Content Include="images\Home\SliderImg3.jpg" />
@@ -302,6 +303,7 @@
     <Content Include="Views\Account\Register.cshtml" />
     <Content Include="Views\Account\Login.cshtml" />
     <Content Include="Views\Cart\Index.cshtml" />
+    <Content Include="Views\Shared\_NavBarPartial.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
