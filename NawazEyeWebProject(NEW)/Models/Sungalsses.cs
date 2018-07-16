@@ -1,10 +1,11 @@
 ﻿using System;
 using System.Data.SqlClient;
 using System.Configuration;
+using System.Collections.Generic;
 
 namespace NawazEyeWebProject_NEW_.Models
 {
-    public class Sunglasses:Product
+    public class Sunglasses : Product
     {
         SqlConnection con = new SqlConnection();
         SqlCommand cmd = new SqlCommand();
@@ -16,7 +17,7 @@ namespace NawazEyeWebProject_NEW_.Models
             try
             {
                 con = new SqlConnection(ConfigurationManager.ConnectionStrings["conString"].ConnectionString);
-                query = "select LensColor from SUNGLASSES where ProductId="+id;
+                query = "select LensColor from SUNGLASSES where ProductId=" + id;
                 cmd = new SqlCommand(query, con);
                 con.Open();
                 lensColor = (string)cmd.ExecuteScalar();
@@ -42,7 +43,7 @@ namespace NawazEyeWebProject_NEW_.Models
             try
             {
                 con = new SqlConnection(ConfigurationManager.ConnectionStrings["conString"].ConnectionString);
-                query = "INSERT INTO [SUNGLASSES] ([ProductId],[LensColor]) VALUES ("+ProductId+",'"+lensColor+"')";
+                query = "INSERT INTO [SUNGLASSES] ([ProductId],[LensColor]) VALUES (" + ProductId + ",'" + lensColor + "')";
                 cmd = new SqlCommand(query, con);
                 con.Open();
                 if (cmd.ExecuteNonQuery() != 1)
@@ -82,6 +83,29 @@ namespace NawazEyeWebProject_NEW_.Models
                     Exception e = new Exception("Database Connection Error. " + ex.Message);
                     throw e;
                 }
+            }
+        }
+        public static List<Sunglasses> FeaturedSunglasses()
+        {
+            List<Sunglasses> lst = new List<Sunglasses>();
+            try
+            {
+                SqlConnection con = new SqlConnection(ConfigurationManager.ConnectionStrings["conString"].ConnectionString);
+                string query = "select Top(4) ProductId from SUNGLASSES order by ProductId desc";
+                SqlCommand cmd = new SqlCommand(query, con);
+                con.Open();
+                SqlDataReader reader = cmd.ExecuteReader();
+                while (reader.Read())
+                {
+                    lst.Add(new Sunglasses((int)reader[0]));
+                }
+                con.Close();
+                return lst;
+            }
+            catch (SqlException ex)
+            {
+                Exception e = new Exception("Database Connection Error. " + ex.Message);
+                throw e;
             }
         }
     }

@@ -1,4 +1,5 @@
-﻿@{
+﻿@model NawazEyeWebProject_NEW_.ViewModels.HomeViewModel
+@{
     ViewBag.Title = "Home";
     Layout = "~/Views/Shared/_Layout.cshtml";
     string parallaxClass = "parallax";
@@ -8,7 +9,6 @@
         parallaxClass += "2";
     }
 }
-
 <!--Slider-->
 <div id="slider" class="container-fluid">
     <div class="row" align="center">
@@ -48,27 +48,32 @@
                         <p class="secHeading w3-flat-pomegranate">Hot Items</p>
                     </div>
                 </div>
+                @*Hot Items*@
                 <div class="row">
                     <div class="col-md-12">
                         <div class="w3-content" style="max-width:1200px">
-                            <a href="#"><img class="mySlides2" src="../images/Home/hotSeller1.jpg" style="width:100%"></a>
-                            <a href="#"><img class="mySlides2" src="../images/Home/hotSeller2.jpg" style="width:100%"></a>
-                            <a href="#"><img class="mySlides2" src="../images/Home/hotSeller3.jpg" style="width:100%"></a>
-
+                            @{
+                                int i = 1;
+                                foreach (var item in Model.HotItems)
+                                {
+                                    string lnk = "/View/ViewProduct/" + item.Id;
+                                    <a href="@lnk"><img class="mySlides2" src="@item.Image" style="width:100%" title="@item.Name" /></a>
+                                }
+                            }
                             <div class="w3-row-padding w3-section">
-                                <div class="w3-col s4">
-                                    <img class="demo w3-opacity w3-hover-opacity-off" src="../images/Home/hotSeller1.jpg" style="width:100%" onclick="currentDiv(1)">
-                                </div>
-                                <div class="w3-col s4">
-                                    <img class="demo w3-opacity w3-hover-opacity-off" src="../images/Home/hotSeller2.jpg" style="width:100%" onclick="currentDiv(2)">
-                                </div>
-                                <div class="w3-col s4">
-                                    <img class="demo w3-opacity w3-hover-opacity-off" src="../images/Home/hotSeller3.jpg" style="width:100%" onclick="currentDiv(3)">
-                                </div>
+                                @foreach (var item in Model.HotItems)
+                                {
+                                    <div class="w3-col s4">
+                                        <img class="demo w3-opacity w3-hover-opacity-off" src="@item.Image" style="width:100%" onclick="currentDiv(@i)" title="@item.Name">
+                                    </div>
+                                    i++;
+                                }
                             </div>
+
                         </div>
                     </div>
                 </div>
+                @*End of Hot Items*@
             </div>
         </div>
     </div>
@@ -81,58 +86,24 @@
         </div>
     </div>
     <div class="row">
-        <div class="col-md-3 col-xs-12 col-sm-6">
-            <table class="table-responsive">
-                <tr>
-                    <td class="itemcell"><img class="img-thumbnail" src="../images/Home/featuredSunglasses1.jpg" /></td>
-                </tr>
-                <tr>
-                    <td class="itemcell" align="center"><a href="#" class="itemLink">Sunglasses Sample 1</a></td>
-                </tr>
-                <tr>
-                    <td class="itemcell">RS. 1800</td>
-                </tr>
-            </table>
-        </div>
-        <div class="col-md-3 col-xs-12 col-sm-6">
-            <table class="table-responsive">
-                <tr>
-                    <td class="itemcell"><img class="img-thumbnail" src="../images/Home/featuredSunglasses2.jpg" /></td>
-                </tr>
-                <tr>
-                    <td class="itemcell" align="center"><a href="#" class="itemLink">Sunglasses Sample 2</a></td>
-                </tr>
-                <tr>
-                    <td class="itemcell">RS. 2100</td>
-                </tr>
-            </table>
-        </div>
-        <div class="col-md-3 col-xs-12 col-sm-6">
-            <table class="table-responsive">
-                <tr>
-                    <td class="itemcell"><img class="img-thumbnail" src="../images/Home/featuredSunglasses3.jpg" /></td>
-                </tr>
-                <tr>
-                    <td class="itemcell" align="center"><a href="#" class="itemLink">Sunglasses Sample 2</a></td>
-                </tr>
-                <tr>
-                    <td class="itemcell">RS. 1400</td>
-                </tr>
-            </table>
-        </div>
-        <div class="col-md-3 col-xs-12 col-sm-6">
-            <table class="table-responsive">
-                <tr>
-                    <td class="itemcell"><img class="img-thumbnail" src="../images/Home/featuredSunglasses4.jpg" /></td>
-                </tr>
-                <tr>
-                    <td class="itemcell" align="center"><a href="#" class="itemLink">Sunglasses Sample 2</a></td>
-                </tr>
-                <tr>
-                    <td class="itemcell">RS. 1800</td>
-                </tr>
-            </table>
-        </div>
+        @foreach (var item in Model.PopSunglasses)
+        {
+            string lnk = "/View/ViewProduct/" + item.Id;
+            <div class="col-md-3 col-xs-12 col-sm-6">
+                <table class="table-responsive">
+                    <tr>
+                        <td class="itemcell"><img class="img-thumbnail" src="@item.Image" /></td>
+                    </tr>
+                    <tr>
+                        <td class="itemcell" align="center"><a href="@lnk" class="itemLink">@item.Name</a></td>
+                    </tr>
+                    <tr>
+                        <td class="itemcell">Rs. @item.Price</td>
+                    </tr>
+                </table>
+            </div>
+
+        }
     </div>
     <div class="row">
         <div class="col-md-12 col-lg-12 col-sm-12 col-xs-12">
@@ -140,58 +111,24 @@
         </div>
     </div>
     <div class="row">
-        <div class="col-md-3 col-xs-12 col-sm-6">
-            <table class="table-responsive">
-                <tr>
-                    <td class="itemcell"><img class="img-thumbnail" src="../images/Home/featuredFrame1.jpg" /></td>
-                </tr>
-                <tr>
-                    <td class="itemcell" align="center"><a href="#" class="itemLink">Frames Sample 1</a></td>
-                </tr>
-                <tr>
-                    <td class="itemcell">RS. 1800</td>
-                </tr>
-            </table>
-        </div>
-        <div class="col-md-3 col-xs-12 col-sm-6">
-            <table class="table-responsive">
-                <tr>
-                    <td class="itemcell"><img class="img-thumbnail" src="../images/Home/featuredFrame2.jpg" /></td>
-                </tr>
-                <tr>
-                    <td class="itemcell" align="center"><a href="#" class="../itemLink">Frames Sample 2</a></td>
-                </tr>
-                <tr>
-                    <td class="itemcell">RS. 2100</td>
-                </tr>
-            </table>
-        </div>
-        <div class="col-md-3 col-xs-12 col-sm-6">
-            <table class="table-responsive">
-                <tr>
-                    <td class="itemcell"><img class="img-thumbnail" src="../images/Home/featuredFrame3.jpg" /></td>
-                </tr>
-                <tr>
-                    <td class="itemcell" align="center"><a href="#" class="itemLink">Frames Sample 3</a></td>
-                </tr>
-                <tr>
-                    <td class="itemcell">RS. 1400</td>
-                </tr>
-            </table>
-        </div>
-        <div class="col-md-3 col-xs-12 col-sm-6">
-            <table class="table-responsive">
-                <tr>
-                    <td class="itemcell"><img class="img-thumbnail" src="../images/Home/featuredFrame4.jpg" /></td>
-                </tr>
-                <tr>
-                    <td class="itemcell" align="center"><a href="#" class="itemLink">Frames Sample 4</a></td>
-                </tr>
-                <tr>
-                    <td class="itemcell">RS. 1800</td>
-                </tr>
-            </table>
-        </div>
+        @foreach (var item in Model.PopPrescriptionGlasses)
+        {
+            string lnk = "/View/ViewProduct/" + item.Id;
+            <div class="col-md-3 col-xs-12 col-sm-6">
+                <table class="table-responsive">
+                    <tr>
+                        <td class="itemcell"><img class="img-thumbnail" src="@item.Image" /></td>
+                    </tr>
+                    <tr>
+                        <td class="itemcell" align="center"><a href="@lnk" class="itemLink">@item.Name</a></td>
+                    </tr>
+                    <tr>
+                        <td class="itemcell">Rs. @item.Price</td>
+                    </tr>
+                </table>
+            </div>
+
+        }
     </div>
 </div>
 

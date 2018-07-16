@@ -411,13 +411,13 @@ namespace NawazEyeWebProject_NEW_.Models
                 }
             }
         }
-        public List<Product> GetHotItems()
+        public static List<Product> GetHotItems()
         {
-            List<Product> l = new List<Product>(5);
+            List<Product> l = new List<Product>(3);
             try
             {
                 SqlConnection con = new SqlConnection(ConfigurationManager.ConnectionStrings["conString"].ConnectionString);
-                string query = "select top (5) ProductId from PRODUCTS order by ItemsSold desc";
+                string query = "select top (3) ProductId from PRODUCTS order by ItemsSold desc";
                 SqlCommand cmd = new SqlCommand(query, con);
                 con.Open();
                 SqlDataReader reader = cmd.ExecuteReader();

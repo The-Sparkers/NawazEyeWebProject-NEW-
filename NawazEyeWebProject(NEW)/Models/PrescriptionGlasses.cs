@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Data.SqlClient;
 using System.Configuration;
+using System.Collections.Generic;
 
 namespace NawazEyeWebProject_NEW_.Models
 {
@@ -114,6 +115,29 @@ namespace NawazEyeWebProject_NEW_.Models
                     Exception e = new Exception("Database Connection Error. " + ex.Message);
                     throw e;
                 }
+            }
+        }
+        public static List<PrescriptionGlasses> FeaturedPrescriptionGlasses()
+        {
+            List<PrescriptionGlasses> lst = new List<PrescriptionGlasses>();
+            try
+            {
+                SqlConnection con = new SqlConnection(ConfigurationManager.ConnectionStrings["conString"].ConnectionString);
+                string query = "select Top(4) ProductId from PRESCRIPTION_GLASSES order by ProductId desc";
+                SqlCommand cmd = new SqlCommand(query, con);
+                con.Open();
+                SqlDataReader reader = cmd.ExecuteReader();
+                while (reader.Read())
+                {
+                    lst.Add(new PrescriptionGlasses((int)reader[0]));
+                }
+                con.Close();
+                return lst;
+            }
+            catch (SqlException ex)
+            {
+                Exception e = new Exception("Database Connection Error. " + ex.Message);
+                throw e;
             }
         }
     }

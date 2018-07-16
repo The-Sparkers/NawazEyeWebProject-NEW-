@@ -173,6 +173,7 @@
     <Compile Include="Controllers\HomeController.cs" />
     <Compile Include="Controllers\ManageController.cs" />
     <Compile Include="Controllers\SunglassesController.cs" />
+    <Compile Include="Controllers\ViewController.cs" />
     <Compile Include="Global.asax.cs">
       <DependentUpon>Global.asax</DependentUpon>
     </Compile>
@@ -188,10 +189,12 @@
     <Compile Include="Models\PromoCode.cs" />
     <Compile Include="Models\Sungalsses.cs" />
     <Compile Include="ViewModels\AccountViewModels.cs" />
+    <Compile Include="ViewModels\HomeViewModels.cs" />
     <Compile Include="ViewModels\IdentityModels.cs" />
     <Compile Include="ViewModels\ManageViewModels.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Startup.cs" />
+    <Compile Include="ViewModels\ViewProductsViewModels.cs" />
   </ItemGroup>
   <ItemGroup>
     <Content Include="Content\bootstrap.css" />
@@ -249,6 +252,60 @@
     <Content Include="images\Uploads\1013_3.jpg" />
     <Content Include="images\Uploads\1013_4.jpg" />
     <Content Include="images\Uploads\1013_5.jpg" />
+    <Content Include="images\Uploads\2003_805289126577_shad_fr.jpg" />
+    <Content Include="images\Uploads\2003_images.jpg" />
+    <Content Include="images\Uploads\2003_PoL019_IMG00009_270x180_crop_center%402x.jpg" />
+    <Content Include="images\Uploads\2004_805289126577_shad_fr.jpg" />
+    <Content Include="images\Uploads\2004_903058-50.jpg" />
+    <Content Include="images\Uploads\2004_images.jpg" />
+    <Content Include="images\Uploads\2004_PC2003-N_C2_02.jpg" />
+    <Content Include="images\Uploads\2004_PoL019_IMG00009_270x180_crop_center%402x.jpg" />
+    <Content Include="images\Uploads\2004_ps-50iv-1ab1o1.jpg" />
+    <Content Include="images\Uploads\2005_download.jpg" />
+    <Content Include="images\Uploads\2005_ps-50iv-1ab1o1.jpg" />
+    <Content Include="images\Uploads\2005_Rosare_L0793L-3.jpg" />
+    <Content Include="images\Uploads\3003_images.jpg" />
+    <Content Include="images\Uploads\3003_PoL019_IMG00009_270x180_crop_center%402x.jpg" />
+    <Content Include="images\Uploads\3003_ray ban erika-026fgz.jpg" />
+    <Content Include="images\Uploads\3004_805289307648_000A.jpg" />
+    <Content Include="images\Uploads\3004_images %281%29.jpg" />
+    <Content Include="images\Uploads\3004_images %282%29.jpg" />
+    <Content Include="images\Uploads\3004_images %283%29.jpg" />
+    <Content Include="images\Uploads\3004_images.jpg" />
+    <Content Include="images\Uploads\3004_PoL019_IMG00009_270x180_crop_center%402x.jpg" />
+    <Content Include="images\Uploads\3004_ray ban erika-026fgz.jpg" />
+    <Content Include="images\Uploads\3005_805289307648_000A.jpg" />
+    <Content Include="images\Uploads\3005_images %281%29.jpg" />
+    <Content Include="images\Uploads\3005_images %282%29.jpg" />
+    <Content Include="images\Uploads\3005_images %283%29.jpg" />
+    <Content Include="images\Uploads\3005_images.jpg" />
+    <Content Include="images\Uploads\3005_PoL019_IMG00009_270x180_crop_center%402x.jpg" />
+    <Content Include="images\Uploads\3005_ray ban erika-026fgz.jpg" />
+    <Content Include="images\Uploads\3005_ray-ban-new-wayfarer-classic-sunglasses-with-black-frame-green-classic-g-15-lens-5.png" />
+    <Content Include="images\Uploads\3006_805289307648_000A.jpg" />
+    <Content Include="images\Uploads\3006_images %281%29.jpg" />
+    <Content Include="images\Uploads\3006_images %282%29.jpg" />
+    <Content Include="images\Uploads\3006_images %283%29.jpg" />
+    <Content Include="images\Uploads\3006_images.jpg" />
+    <Content Include="images\Uploads\3006_PoL019_IMG00009_270x180_crop_center%402x.jpg" />
+    <Content Include="images\Uploads\3006_ray ban erika-026fgz.jpg" />
+    <Content Include="images\Uploads\3006_ray-ban-new-wayfarer-classic-sunglasses-with-black-frame-green-classic-g-15-lens-5.png" />
+    <Content Include="images\Uploads\3007_805289307648_000A.jpg" />
+    <Content Include="images\Uploads\3007_images %281%29.jpg" />
+    <Content Include="images\Uploads\3007_images %282%29.jpg" />
+    <Content Include="images\Uploads\3007_images %283%29.jpg" />
+    <Content Include="images\Uploads\3007_images.jpg" />
+    <Content Include="images\Uploads\3007_PoL019_IMG00009_270x180_crop_center%402x.jpg" />
+    <Content Include="images\Uploads\3007_ray ban erika-026fgz.jpg" />
+    <Content Include="images\Uploads\3007_ray-ban-new-wayfarer-classic-sunglasses-with-black-frame-green-classic-g-15-lens-5.png" />
+    <Content Include="images\Uploads\3008_805289307648_000A.jpg" />
+    <Content Include="images\Uploads\3008_images %281%29.jpg" />
+    <Content Include="images\Uploads\3008_images %282%29.jpg" />
+    <Content Include="images\Uploads\3008_images %283%29.jpg" />
+    <Content Include="images\Uploads\3008_images.jpg" />
+    <Content Include="images\Uploads\3008_PoL019_IMG00009_270x180_crop_center%402x.jpg" />
+    <Content Include="images\Uploads\3008_ray ban erika-026fgz.jpg" />
+    <Content Include="images\Uploads\3008_ray-ban-new-wayfarer-classic-sunglasses-with-black-frame-green-classic-g-15-lens-5.png" />
     <Content Include="Scripts\FacebookAuthentication.js" />
     <Content Include="Scripts\bootstrap.js" />
     <Content Include="Scripts\bootstrap.min.js" />
@@ -304,10 +361,12 @@
     <Content Include="Views\Account\Login.cshtml" />
     <Content Include="Views\Cart\Index.cshtml" />
     <Content Include="Views\Shared\_NavBarPartial.cshtml" />
+    <Content Include="Views\Home\_HotItemsPartial.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
     <Folder Include="images\Prescriptions\" />
+    <Folder Include="Views\View\" />
   </ItemGroup>
   <ItemGroup>
     <Content Include="fonts\glyphicons-halflings-regular.woff" />
