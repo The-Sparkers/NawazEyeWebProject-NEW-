@@ -58,22 +58,71 @@ namespace NawazEyeWebProject_NEW_.Controllers
             {
                 FeaturedPrescriptionGlassesViewModel fpvm = new FeaturedPrescriptionGlassesViewModel()
                 {
-
                     Id = item.ProductId.ToString(),
                     Name = item.Name,
-                    Image = item.Name,
+                    Image = item.PrimaryImage,
                     Price = decimal.Round(item.Price).ToString()
                 };
                 lstPrescription.Add(fpvm);
                 //try
                 //{
-                lstPrescription.Add(fpvm);
                 //}
                 //catch (NullReferenceException)
                 //{
                 //}
             }
             model.PopPrescriptionGlasses = lstPrescription;
+            return View(model);
+        }
+        [HttpGet]
+        public ActionResult ViewProduct(int id)
+        {
+            ViewProductViewModel model = new ViewProductViewModel();
+            if (Product.IsPrescriptionGlasses(id))
+            {
+                PrescriptionGlasses p = new PrescriptionGlasses(id);
+                model.Id = p.ProductId.ToString();
+                model.Name = p.Name;
+                model.Price = decimal.Round(p.Price).ToString();
+                model.PrimaryImage = p.PrimaryImage;
+                model.Lens = p.Lens.LensName;
+                model.Description = p.ProductDescription;
+                model.DiscountedPrice = decimal.Round(p.GetDiscountedPrice()).ToString();
+                if (p.Quantity == 0)
+                {
+                    model.Status = "Out of Stock";
+                }
+                else
+                {
+                    model.Status = p.Quantity + " Item(s) available";
+                }
+                model.Frame = p.Frame.FrameName;
+                model.FrameColor = p.FrameColor;
+                model.Images = p.Images;
+                model.IsSunglasses = false;
+            }
+            else if (Product.IsSunglasses(id))
+            {
+                Sunglasses s = new Sunglasses(id);
+                model.Id = s.ProductId.ToString();
+                model.Name = s.Name;
+                model.Price = decimal.Round(s.Price).ToString();
+                model.PrimaryImage = s.PrimaryImage;
+                model.LensColor = s.LensColor;
+                model.Description = s.ProductDescription;
+                model.DiscountedPrice = decimal.Round(s.GetDiscountedPrice()).ToString();
+                if (s.Quantity == 0)
+                {
+                    model.Status = "Out of Stock";
+                }
+                else
+                {
+                    model.Status = s.Quantity + " Item(s) remaining";
+                }
+                model.FrameColor = s.FrameColor;
+                model.Images = s.Images;
+                model.IsSunglasses = true;
+            }
             return View(model);
         }
     }

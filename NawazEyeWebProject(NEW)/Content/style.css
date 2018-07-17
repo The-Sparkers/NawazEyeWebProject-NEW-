@@ -1,5 +1,6 @@
 ﻿@charset "utf-8";
 /* CSS Document */
+@import url(https://fonts.googleapis.com/css?family=Open+Sans);
 html{
     height:100%;
     overflow:hidden;
@@ -12,6 +13,146 @@ body{
     transform-style:preserve-3d;
     overflow-y:scroll;
     overflow-x:hidden
+}
+.img-thumbnail-custom{
+    float: left;
+    width:  300px;
+    height: 200px;
+    background-position: 50% 50%;
+    background-repeat:   no-repeat;
+    background-size:     cover;
+}
+
+#container{
+  width:450px;
+  position:relative;
+  margin:0 auto;
+  top:50px;
+}
+
+#overlay{
+  cursor: pointer;
+  position:absolute;
+  top:0;
+  left:0;
+  height:100%;
+  width:100%;
+  background:#000;
+  opacity:.7;
+  z-index:2000;
+  display:none;
+}
+
+.photo{
+  position:relative;
+  float:left;
+  height:100px;
+  width:100px;
+  background:#fff;
+  border:1px solid #999;
+  margin:20px;
+}
+
+.photo-image{
+  cursor: pointer;
+  position:relative;
+  top:9px;
+  left:9px;
+  width:80px;
+  border:1px solid #999;  
+  z-index:1000;
+  opacity:0.6;
+  transition: width 1s, top 1s, left 1s, opacity 1s, z-index .01s;
+}
+
+.photo-image:hover{
+  width:200px;
+  top:-50px;
+  left:-50px;
+  z-index:1001;
+  opacity:1;
+}
+
+.photo-selected{
+  cursor:default;
+  z-index:2001;
+  width:500px;
+  opacity:1;
+  top:-20px;
+  left:-200px;
+  box-shadow: 0 0 30px rgba(0, 0, 0, 0.5);
+}
+
+/* Nov 11 2013 - Added "X" to close popup - just a visual cue */
+/*.photo-x:after{
+  content: "X";
+  font-family: arial;
+  position: relative;
+  top: -535px;
+  font-weight: bold;
+  left: 285px;
+  padding: 10px 14px;
+  border: 2px solid black;
+  background: white;
+  z-index: 9999;
+  cursor: pointer;
+}*/
+
+.photo-selected:hover{
+  width:500px;
+  top:-50px;
+  left:-50px;
+  z-index:2001;
+  opacity:1;
+  top:-20px;
+  left:-200px;
+}
+.search {
+  width: 100%;
+  position: relative
+}
+
+.searchTerm {
+  float: left;
+  width: 100%;
+  border: 3px solid #c0392b;
+  padding: 5px;
+  height: 20px;
+  border-radius: 5px;
+  outline: none;
+  color: #c0392b;
+}
+
+.searchTerm:focus{
+  color: #c0392b;
+}
+
+.searchButton {
+  position: absolute;  
+  right: -50px;
+  width: 40px;
+  height: 36px;
+  border: 1px solid #c0392b;
+  background: #c0392b;
+  text-align: center;
+  color: #fff;
+  border-radius: 5px;
+  cursor: pointer;
+  font-size: 20px;
+}
+
+/*Resize the wrap to see the search bar change!*/
+.wrap{
+  width: 30%;
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+}
+.SearchBox{
+    align-content:flex-start;
+    float:left;
+    top:10px
 }
 .parallax{
     background-image:url("../images/Home/parallexImage.jpg");
@@ -197,7 +338,7 @@ body{
 	margin-top:0px; 
 	border-bottom-style:solid; 
 	border-bottom-color:#CCC; 
-	border-bottom-width:thin;  
+	border-bottom-width:thin;
 }
 .menu{
 	margin-top:5px
@@ -329,6 +470,8 @@ height:220px
 	color:#FFF;
 	font-weight:700;
 	text-align:center;
+    padding-bottom:10px;
+    padding-top:10px;
 }
 .addToCartBtn a{
 	font-size:16px;
@@ -338,6 +481,8 @@ height:220px
 .viewItemBtn{
 	background-color:#06F;
 	text-align:center;
+    padding-bottom:10px;
+    padding-top:10px;
 	
 }
 .viewItemBtn a{
@@ -358,6 +503,7 @@ height:220px
 	background-color:#06C;
 	text-decoration:underline;
 	color:#FFF;
+    
 }
 .viewItemBtn a:hover{
 	font-size:16px;
@@ -367,9 +513,9 @@ height:220px
 }
 .showingItems{
 	font-size:16px;
-	font:"Comic Sans MS", cursive;
+	font-family:'Arial Rounded MT';
 	color:#000;
-	text-decoration:underline;
+	text-decoration:none;
 	text-align:center;
 	font-weight:bold;
 }
@@ -379,4 +525,14 @@ height:220px
 	color:#000;
 	font-weight:lighter;
 	text-align:center;
+}
+.show-discount{
+    color:orangered;
+    font-family:'Arial Rounded MT';
+    font-weight:bold;
+    font-size:12px;
+
+}
+.table-show-item{
+    margin-bottom:10px;
 }

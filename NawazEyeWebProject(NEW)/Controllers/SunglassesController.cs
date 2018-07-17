@@ -1,4 +1,6 @@
-﻿using System;
+﻿using NawazEyeWebProject_NEW_.Models;
+using NawazEyeWebProject_NEW_.ViewModels;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Web;
@@ -11,7 +13,19 @@ namespace NawazEyeWebProject_NEW_.Controllers
         // GET: Sunglasses
         public ActionResult Index()
         {
-            return View();
+            List<ViewSunglassesViewModel> model = new List<ViewSunglassesViewModel>();
+            foreach (var item in Sunglasses.GetAllSunglasses())
+            {
+                model.Add(new ViewSunglassesViewModel()
+                {
+                    Id = item.ProductId.ToString(),
+                    Name = item.Name,
+                    Image = item.PrimaryImage,
+                    Price = decimal.Round(item.Price).ToString(),
+                    Discount = item.Discount.ToString()
+                });
+            }
+            return View(model);
         }
     }
 }

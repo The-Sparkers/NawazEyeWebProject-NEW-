@@ -14,5 +14,9 @@ namespace NawazEyeWebProject_NEW_.Controllers
         {
             return View();
         }
+        public ActionResult AddToCart()
+        {
+            return View();
+        }
     }
 }

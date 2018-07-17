@@ -85,6 +85,29 @@ namespace NawazEyeWebProject_NEW_.Models
                 }
             }
         }
+        public static List<Sunglasses> GetAllSunglasses()
+        {
+            List<Sunglasses> lst = new List<Sunglasses>();
+            try
+            {
+                SqlConnection con = new SqlConnection(ConfigurationManager.ConnectionStrings["conString"].ConnectionString);
+                string query = "select s.ProductId from SUNGLASSES s, PRODUCTS p where p.ProductId=s.ProductId and p.StopOrder=0";
+                SqlCommand cmd = new SqlCommand(query, con);
+                con.Open();
+                SqlDataReader reader = cmd.ExecuteReader();
+                while (reader.Read())
+                {
+                    lst.Add(new Sunglasses((int)reader[0]));
+                }
+                con.Close();
+                return lst;
+            }
+            catch (SqlException ex)
+            {
+                Exception e = new Exception("Database Connection Error. " + ex.Message);
+                throw e;
+            }
+        }
         public static List<Sunglasses> FeaturedSunglasses()
         {
             List<Sunglasses> lst = new List<Sunglasses>();

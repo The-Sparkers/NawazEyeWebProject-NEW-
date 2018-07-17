@@ -314,7 +314,8 @@ namespace NawazEyeWebProject_NEW_.Models
         }
         public decimal GetDiscountedPrice()
         {
-            decimal dPercent = Price * (Discount / 100);
+            decimal discount = decimal.Divide(Discount, 100); 
+            decimal dPercent = Price * discount; 
             decimal dPrice = Price - dPercent;
             return dPrice;
         }

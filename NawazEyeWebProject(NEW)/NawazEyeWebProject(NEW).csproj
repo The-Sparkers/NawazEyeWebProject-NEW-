@@ -173,7 +173,6 @@
     <Compile Include="Controllers\HomeController.cs" />
     <Compile Include="Controllers\ManageController.cs" />
     <Compile Include="Controllers\SunglassesController.cs" />
-    <Compile Include="Controllers\ViewController.cs" />
     <Compile Include="Global.asax.cs">
       <DependentUpon>Global.asax</DependentUpon>
     </Compile>
@@ -194,7 +193,7 @@
     <Compile Include="ViewModels\ManageViewModels.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Startup.cs" />
-    <Compile Include="ViewModels\ViewProductsViewModels.cs" />
+    <Compile Include="ViewModels\SunglassesViewModels.cs" />
   </ItemGroup>
   <ItemGroup>
     <Content Include="Content\bootstrap.css" />
@@ -226,6 +225,7 @@
     <Content Include="images\Home\SliderImg1.jpg" />
     <Content Include="images\Home\SliderImg2.jpg" />
     <Content Include="images\Home\SliderImg3.jpg" />
+    <Content Include="images\Shared\boy-bright-close-up-792326.jpg" />
     <Content Include="images\Shared\HeadLogo.png" />
     <Content Include="images\Uploads\2003_805289126577_shad_fr.jpg" />
     <Content Include="images\Uploads\2003_images.jpg" />
@@ -286,6 +286,7 @@
     <Content Include="Scripts\bootstrap.min.js" />
     <Content Include="Scripts\hotItemsSlider.js" />
     <None Include="Scripts\jquery-1.10.2.intellisense.js" />
+    <Content Include="Scripts\ImageGallery.js" />
     <Content Include="Scripts\jquery-1.10.2.js" />
     <Content Include="Scripts\jquery-1.10.2.min.js" />
     <Content Include="Scripts\jquery-3.3.1.js" />
@@ -301,6 +302,7 @@
     <Content Include="Scripts\respond.js" />
     <Content Include="Scripts\respond.min.js" />
     <None Include="Scripts\_references.js" />
+    <Content Include="Scripts\SearchBoxScript.js" />
     <Content Include="Web.config" />
     <Content Include="Web.Debug.config">
       <DependentUpon>Web.config</DependentUpon>
@@ -337,6 +339,9 @@
     <Content Include="Views\Cart\Index.cshtml" />
     <Content Include="Views\Shared\_NavBarPartial.cshtml" />
     <Content Include="Views\Home\_HotItemsPartial.cshtml" />
+    <Content Include="Views\Shared\_SearchPartialView.cshtml" />
+    <Content Include="Views\Home\ViewProduct.cshtml" />
+    <Content Include="Views\Sunglasses\Index.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />

@@ -1,0 +1,110 @@
+﻿@model NawazEyeWebProject_NEW_.ViewModels.ViewProductViewModel
+@using System.Configuration;
+
+@{
+    ViewBag.Title = "View " + Model.Name;
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<h2>View Product</h2>
+
+<div>
+    <hr />
+    <dl class="dl-horizontal">
+        <dt>
+            @Html.DisplayNameFor(model => model.Name)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Name)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.Description)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Description)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.Price)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Price)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.DiscountedPrice)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.DiscountedPrice)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.PrimaryImage)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.PrimaryImage)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.IsSunglasses)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.IsSunglasses)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.FrameColor)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.FrameColor)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.LensColor)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.LensColor)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.Frame)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Frame)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.Lens)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Lens)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.Status)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Status)
+        </dd>
+
+    </dl>
+</div>
+<p>
+    @Html.ActionLink("Edit", "Edit", new { id = Model.Id }) |
+    @Html.ActionLink("Back to List", "Index")
+</p>
+@section Scripts {
+    @Scripts.Render("~/Scripts/ImageGallery.js")
+}

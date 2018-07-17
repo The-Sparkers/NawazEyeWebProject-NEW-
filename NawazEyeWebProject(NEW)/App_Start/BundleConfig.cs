@@ -15,7 +15,8 @@ namespace NawazEyeWebProject_NEW_
             bundles.Add(new ScriptBundle("~/bundles/customScripts").Include(
                         "~/Scripts/npm.js",
                         "~/Scripts/hotItemsSlider.js",
-                        "~/Scripts/LayoutCustomJquery.js"));
+                        "~/Scripts/LayoutCustomJquery.js",
+                        "~/Scripts/SearchBoxScript.js"));
             bundles.Add(new ScriptBundle("~/bundles/authentications").Include(
                 "~/Scripts/FacebookAuthentication.js"));
             bundles.Add(new ScriptBundle("~/bundles/jqueryval").Include(
@@ -38,7 +39,7 @@ namespace NawazEyeWebProject_NEW_
                       "~/Content/bootstrap.min.css",
                       "~/Content/customCss.css",
                       "~/Content/w3-colors-flat.css",
-                      "~/Content/w3colors-metro.css"));
+                      "~/Content/w3-colors-metro.css"));
         }
     }
 }

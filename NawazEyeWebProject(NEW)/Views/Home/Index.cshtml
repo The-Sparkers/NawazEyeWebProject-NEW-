@@ -56,7 +56,7 @@
                                 int i = 1;
                                 foreach (var item in Model.HotItems)
                                 {
-                                    string lnk = "/View/ViewProduct/" + item.Id;
+                                    string lnk = "/Home/ViewProduct/" + item.Id;
                                     <a href="@lnk"><img class="mySlides2" src="@item.Image" style="width:100%" title="@item.Name" /></a>
                                 }
                             }
@@ -88,11 +88,11 @@
     <div class="row">
         @foreach (var item in Model.PopSunglasses)
         {
-            string lnk = "/View/ViewProduct/" + item.Id;
+            string lnk = "/Home/ViewProduct/" + item.Id;
             <div class="col-md-3 col-xs-12 col-sm-6">
                 <table class="table-responsive">
                     <tr>
-                        <td class="itemcell"><img class="img-thumbnail" src="@item.Image" /></td>
+                        <td class="itemcell"><img class="img-thumbnail img-thumbnail-custom" src="@item.Image"  height="500"/></td>
                     </tr>
                     <tr>
                         <td class="itemcell" align="center"><a href="@lnk" class="itemLink">@item.Name</a></td>
@@ -113,11 +113,11 @@
     <div class="row">
         @foreach (var item in Model.PopPrescriptionGlasses)
         {
-            string lnk = "/View/ViewProduct/" + item.Id;
+            string lnk = "/Home/ViewProduct/" + item.Id;
             <div class="col-md-3 col-xs-12 col-sm-6">
                 <table class="table-responsive">
                     <tr>
-                        <td class="itemcell"><img class="img-thumbnail" src="@item.Image" /></td>
+                        <td class="itemcell"><img class="img-thumbnail img-thumbnail-custom" src="@item.Image"/></td>
                     </tr>
                     <tr>
                         <td class="itemcell" align="center"><a href="@lnk" class="itemLink">@item.Name</a></td>
