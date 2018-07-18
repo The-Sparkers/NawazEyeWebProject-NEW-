@@ -146,7 +146,7 @@ namespace NawazEyeWebProject_NEW_.Models
             try
             {
                 SqlConnection con = new SqlConnection(ConfigurationManager.ConnectionStrings["conString"].ConnectionString);
-                string query = "select Top(4) ProductId from PRESCRIPTION_GLASSES order by ProductId desc";
+                string query = "select Top(4) pg.ProductId from PRESCRIPTION_GLASSES pg, PRODUCTS p where p.StopOrder=0 and pg.ProductId=p.ProductId order by ProductId desc";
                 SqlCommand cmd = new SqlCommand(query, con);
                 con.Open();
                 SqlDataReader reader = cmd.ExecuteReader();

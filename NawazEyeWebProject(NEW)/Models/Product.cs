@@ -325,7 +325,7 @@ namespace NawazEyeWebProject_NEW_.Models
             try
             {
                 SqlConnection con = new SqlConnection(ConfigurationManager.ConnectionStrings["conString"].ConnectionString);
-                string query = "select ProductId from PRODUCTS where Name like '%"+matchName+"%'";
+                string query = "select ProductId from PRODUCTS where StopOrder=0 And Name like '%"+matchName+"%'";
                 SqlCommand cmd = new SqlCommand(query, con);
                 con.Open();
                 SqlDataReader reader = cmd.ExecuteReader();
@@ -418,7 +418,7 @@ namespace NawazEyeWebProject_NEW_.Models
             try
             {
                 SqlConnection con = new SqlConnection(ConfigurationManager.ConnectionStrings["conString"].ConnectionString);
-                string query = "select top (3) ProductId from PRODUCTS order by ItemsSold desc";
+                string query = "select top (3) ProductId from PRODUCTS where StopOrder=0 order by ItemsSold desc";
                 SqlCommand cmd = new SqlCommand(query, con);
                 con.Open();
                 SqlDataReader reader = cmd.ExecuteReader();

@@ -188,6 +188,7 @@
     <Compile Include="Models\PromoCode.cs" />
     <Compile Include="Models\Sungalsses.cs" />
     <Compile Include="ViewModels\AccountViewModels.cs" />
+    <Compile Include="ViewModels\FramesViewModels.cs" />
     <Compile Include="ViewModels\HomeViewModels.cs" />
     <Compile Include="ViewModels\IdentityModels.cs" />
     <Compile Include="ViewModels\ManageViewModels.cs" />
@@ -208,19 +209,6 @@
     <Content Include="images\Accounts\loginAccount.jpg" />
     <Content Include="images\Accounts\registerAccount.jpg" />
     <Content Include="images\Accounts\registerExternalLogin.jpg" />
-    <Content Include="images\Home\Box-Optics-50-.jpg" />
-    <Content Include="images\Home\Box-Sunglasses-50.jpg" />
-    <Content Include="images\Home\featuredFrame1.jpg" />
-    <Content Include="images\Home\featuredFrame2.jpg" />
-    <Content Include="images\Home\featuredFrame3.jpg" />
-    <Content Include="images\Home\featuredFrame4.jpg" />
-    <Content Include="images\Home\featuredSunglasses1.jpg" />
-    <Content Include="images\Home\featuredSunglasses2.jpg" />
-    <Content Include="images\Home\featuredSunglasses3.jpg" />
-    <Content Include="images\Home\featuredSunglasses4.jpg" />
-    <Content Include="images\Home\hotSeller1.jpg" />
-    <Content Include="images\Home\hotSeller2.jpg" />
-    <Content Include="images\Home\hotSeller3.jpg" />
     <Content Include="images\Home\parallexImage.jpg" />
     <Content Include="images\Home\SliderImg1.jpg" />
     <Content Include="images\Home\SliderImg2.jpg" />
@@ -342,6 +330,7 @@
     <Content Include="Views\Shared\_SearchPartialView.cshtml" />
     <Content Include="Views\Home\ViewProduct.cshtml" />
     <Content Include="Views\Sunglasses\Index.cshtml" />
+    <Content Include="Views\Frames\Index.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />

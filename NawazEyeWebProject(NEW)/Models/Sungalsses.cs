@@ -114,7 +114,7 @@ namespace NawazEyeWebProject_NEW_.Models
             try
             {
                 SqlConnection con = new SqlConnection(ConfigurationManager.ConnectionStrings["conString"].ConnectionString);
-                string query = "select Top(4) ProductId from SUNGLASSES order by ProductId desc";
+                string query = "select Top(4) s.ProductId from SUNGLASSES s, PRODUCTS p Where p.StopOrder=0 and s.ProductId=p.ProductId order by ProductId desc";
                 SqlCommand cmd = new SqlCommand(query, con);
                 con.Open();
                 SqlDataReader reader = cmd.ExecuteReader();
