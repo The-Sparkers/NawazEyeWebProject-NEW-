@@ -1,90 +1,121 @@
 ﻿@charset "utf-8";
 /* CSS Document */
 @import url(https://fonts.googleapis.com/css?family=Open+Sans);
-html{
-    height:100%;
-    overflow:hidden;
+
+html {
+    height: 100%;
+    overflow: hidden;
 }
-body{
-    height:100%;
-    margin:0;
-    padding:0;
-    perspective:1px;
-    transform-style:preserve-3d;
-    overflow-y:scroll;
-    overflow-x:hidden
+
+body {
+    height: 100%;
+    margin: 0;
+    padding: 0;
+    perspective: 1px;
+    transform-style: preserve-3d;
+    overflow-y: scroll;
+    overflow-x: hidden;
 }
-.img-thumbnail-custom{
+
+.img-thumbnail-custom {
     float: left;
-    width:  300px;
+    width: 300px;
     height: 200px;
     background-position: 50% 50%;
-    background-repeat:   no-repeat;
-    background-size:     cover;
+    background-repeat: no-repeat;
+    background-size: cover;
 }
 
-#container{
-  width:450px;
-  position:relative;
-  margin:0 auto;
-  top:50px;
+.Product-Description {
+    font-family: 'Times New Roman', Times, serif;
 }
 
-#overlay{
-  cursor: pointer;
-  position:absolute;
-  top:0;
-  left:0;
-  height:100%;
-  width:100%;
-  background:#000;
-  opacity:.7;
-  z-index:2000;
-  display:none;
+    .Product-Description h1 {
+        font-family: 'Arial Rounded MT';
+        text-align: left;
+        color: green;
+    }
+
+    .Product-Description h3 {
+        font-family: 'Gill Sans', 'Gill Sans MT', Calibri, 'Trebuchet MS', sans-serif;
+        color: orange;
+    }
+
+    .Product-Description h2 {
+        font-family: 'Gill Sans', 'Gill Sans MT', Calibri, 'Trebuchet MS', sans-serif;
+        font-variant-caps: all-petite-caps;
+        font-stretch: expanded;
+        text-align: center;
+    }
+
+    .Product-Description table tr td {
+        margin-left: 40px;
+        padding-left: 20px;
+        padding-right: 20px;
+    }
+
+#container {
+    width: 450px;
+    position: relative;
+    margin: 0 auto;
+    top: 50px;
 }
 
-.photo{
-  position:relative;
-  float:left;
-  height:100px;
-  width:100px;
-  background:#fff;
-  border:1px solid #999;
-  margin:20px;
+#overlay {
+    cursor: pointer;
+    position: absolute;
+    top: 0;
+    left: 0;
+    height: 100%;
+    width: 100%;
+    background: #000;
+    opacity: .7;
+    z-index: 2000;
+    display: none;
 }
 
-.photo-image{
-  cursor: pointer;
-  position:relative;
-  top:9px;
-  left:9px;
-  width:80px;
-  border:1px solid #999;  
-  z-index:1000;
-  opacity:0.6;
-  transition: width 1s, top 1s, left 1s, opacity 1s, z-index .01s;
+.photo {
+    position: relative;
+    float: left;
+    height: 100px;
+    width: 100px;
+    background: #fff;
+    border: 1px solid #999;
+    margin: 20px;
 }
 
-.photo-image:hover{
-  width:200px;
-  top:-50px;
-  left:-50px;
-  z-index:1001;
-  opacity:1;
+.photo-image {
+    cursor: pointer;
+    position: relative;
+    top: 9px;
+    left: 9px;
+    width: 80px;
+    border: 1px solid #999;
+    z-index: 1000;
+    opacity: 0.6;
+    transition: width 1s, top 1s, left 1s, opacity 1s, z-index .01s;
 }
 
-.photo-selected{
-  cursor:default;
-  z-index:2001;
-  width:500px;
-  opacity:1;
-  top:-20px;
-  left:-200px;
-  box-shadow: 0 0 30px rgba(0, 0, 0, 0.5);
+    .photo-image:hover {
+        width: 200px;
+        top: -50px;
+        left: -50px;
+        z-index: 1001;
+        opacity: 1;
+    }
+
+.photo-selected {
+    cursor: default;
+    z-index: 2001;
+    width: 500px;
+    opacity: 1;
+    top: -20px;
+    left: -200px;
+    box-shadow: 0 0 30px rgba(0, 0, 0, 0.5);
 }
 
-/* Nov 11 2013 - Added "X" to close popup - just a visual cue */
-/*.photo-x:after{
+    /* Nov 11 2013 - Added "X" to close popup - just a visual cue */
+    /*.photo-x:after{
   content: "X";
   font-family: arial;
   position: relative;
@@ -98,441 +129,539 @@ body{
   cursor: pointer;
 }*/
 
-.photo-selected:hover{
-  width:500px;
-  top:-50px;
-  left:-50px;
-  z-index:2001;
-  opacity:1;
-  top:-20px;
-  left:-200px;
-}
+    .photo-selected:hover {
+        width: 500px;
+        top: -50px;
+        left: -50px;
+        z-index: 2001;
+        opacity: 1;
+        top: -20px;
+        left: -200px;
+    }
+
 .search {
-  width: 100%;
-  position: relative
+    width: 100%;
+    position: relative;
 }
 
 .searchTerm {
-  float: left;
-  width: 100%;
-  border: 3px solid #c0392b;
-  padding: 5px;
-  height: 20px;
-  border-radius: 5px;
-  outline: none;
-  color: #c0392b;
+    float: left;
+    width: 100%;
+    border: 3px solid #c0392b;
+    padding: 5px;
+    height: 20px;
+    border-radius: 5px;
+    outline: none;
+    color: #c0392b;
 }
 
-.searchTerm:focus{
-  color: #c0392b;
-}
+    .searchTerm:focus {
+        color: #c0392b;
+    }
 
 .searchButton {
-  position: absolute;  
-  right: -50px;
-  width: 40px;
-  height: 36px;
-  border: 1px solid #c0392b;
-  background: #c0392b;
-  text-align: center;
-  color: #fff;
-  border-radius: 5px;
-  cursor: pointer;
-  font-size: 20px;
+    position: absolute;
+    right: -50px;
+    width: 40px;
+    height: 36px;
+    border: 1px solid #c0392b;
+    background: #c0392b;
+    text-align: center;
+    color: #fff;
+    border-radius: 5px;
+    cursor: pointer;
+    font-size: 20px;
 }
 
 /*Resize the wrap to see the search bar change!*/
-.wrap{
-  width: 30%;
-  position: absolute;
-  top: 50%;
-  left: 50%;
-  transform: translate(-50%, -50%);
+.wrap {
+    width: 30%;
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
 }
-.SearchBox{
-    align-content:flex-start;
-    float:left;
-    top:10px
-}
-.parallax{
-    background-image:url("../images/Home/parallexImage.jpg");
-    height:350px;
-    background-attachment:fixed;
-    background-position:center;
-    background-repeat:no-repeat;
-    background-size:cover;
 
+.SearchBox {
+    align-content: flex-start;
+    float: left;
+    top: 10px;
 }
-.parallax2{
-    background-image:url("../images/Home/parallexImage.jpg");
-    height:350px;
-    background-attachment:scroll;
-    background-position:center;
-    background-repeat:no-repeat;
-    background-size:cover;
+
+.parallax {
+    background-image: url("../images/Home/parallexImage.jpg");
+    height: 350px;
+    background-attachment: fixed;
+    background-position: center;
+    background-repeat: no-repeat;
+    background-size: cover;
+}
+
+.parallax2 {
+    background-image: url("../images/Home/parallexImage.jpg");
+    height: 350px;
+    background-attachment: scroll;
+    background-position: center;
+    background-repeat: no-repeat;
+    background-size: cover;
 }
 /*@media only screen and (max-device-width: 1366px) {
     .parallax {
         background-attachment: scroll;
     }
 }*/
-.parallexText{
-    font-family:'Monotype Corsiva';
-    color:#fff;
-    text-align:center;
-    font-weight:800;
-    padding-top:100px;
-    text-decoration:overline;
+.parallexText {
+    font-family: 'Monotype Corsiva';
+    color: #fff;
+    text-align: center;
+    font-weight: 800;
+    padding-top: 100px;
+    text-decoration: overline;
 }
+
 .parallexTextBackground {
     background-color: #c0392b;
     opacity: 0.9;
 }
-.viewStoreBtn{
-    text-align:center;
-    margin-top:150px;
-    outline:outset;
-    outline-color:#000;
-    color:#fff
+
+.viewStoreBtn {
+    text-align: center;
+    margin-top: 150px;
+    outline: outset;
+    outline-color: #000;
+    color: #fff;
 }
-.viewStoreBtn h6 a{
-    text-decoration:none;
+
+    .viewStoreBtn h6 a {
+        text-decoration: none;
+    }
+
+        .viewStoreBtn h6 a:hover {
+            text-decoration: none;
+            color: #c0392b;
+        }
+
+    .viewStoreBtn:hover {
+        background-color: #fff;
+        color: #c0392b;
+    }
+
+.menubar {
+    border-top-left-radius: 40px;
+    border-bottom-left-radius: 40px;
+    color: #fff;
+    background-color: #c0392b;
 }
-.viewStoreBtn h6 a:hover{
-    text-decoration:none;
-    color:#c0392b;
+
+.WithoutBullet {
+    list-style: none;
 }
-.viewStoreBtn:hover{
-    background-color:#fff;
-    color:#c0392b;
-}
-.menubar{
-    border-top-left-radius:40px;
-    border-bottom-left-radius:40px;
-    color:#fff;
-    background-color:#c0392b
-}
-.WithoutBullet{
-    list-style:none
-}
+
 .loginBtn--facebook {
-  background-color: #4C69BA;
-  background-image: linear-gradient(#4C69BA, #3B55A0);
-  /*font-family: "Helvetica neue", Helvetica Neue, Helvetica, Arial, sans-serif;*/
-  text-shadow: 0 -1px 0 #354C8C;
+    background-color: #4C69BA;
+    background-image: linear-gradient(#4C69BA, #3B55A0);
+    /*font-family: "Helvetica neue", Helvetica Neue, Helvetica, Arial, sans-serif;*/
+    text-shadow: 0 -1px 0 #354C8C;
 }
-.loginBtn--facebook:before {
-  border-right: #364e92 1px solid;
-  background: url('https://s3-us-west-2.amazonaws.com/s.cdpn.io/14082/icon_facebook.png') 6px 6px no-repeat;
-}
-.loginBtn--facebook:hover,
-.loginBtn--facebook:focus {
-  background-color: #5B7BD5;
-  background-image: linear-gradient(#5B7BD5, #4864B1);
-}
+
+    .loginBtn--facebook:before {
+        border-right: #364e92 1px solid;
+        background: url('https://s3-us-west-2.amazonaws.com/s.cdpn.io/14082/icon_facebook.png') 6px 6px no-repeat;
+    }
+
+    .loginBtn--facebook:hover,
+    .loginBtn--facebook:focus {
+        background-color: #5B7BD5;
+        background-image: linear-gradient(#5B7BD5, #4864B1);
+    }
+
 .loginBtn {
-  box-sizing: border-box;
-  position: relative;
-  /* width: 13em;  - apply for fixed size */
-  margin: 0.2em;
-  padding: 0 15px 0 46px;
-  border: none;
-  text-align: left;
-  line-height: 34px;
-  white-space: nowrap;
-  border-radius: 0.2em;
-  font-size: 16px;
-  color: #FFF;
+    box-sizing: border-box;
+    position: relative;
+    /* width: 13em;  - apply for fixed size */
+    margin: 0.2em;
+    padding: 0 15px 0 46px;
+    border: none;
+    text-align: left;
+    line-height: 34px;
+    white-space: nowrap;
+    border-radius: 0.2em;
+    font-size: 16px;
+    color: #FFF;
 }
-.loginBtn:before {
-  content: "";
-  box-sizing: border-box;
-  position: absolute;
-  top: 0;
-  left: 0;
-  width: 34px;
-  height: 100%;
-}
-.loginBtn:focus {
-  outline: none;
-}
-.loginBtn:active {
-  box-shadow: inset 0 0 0 32px rgba(0,0,0,0.1);
-}
+
+    .loginBtn:before {
+        content: "";
+        box-sizing: border-box;
+        position: absolute;
+        top: 0;
+        left: 0;
+        width: 34px;
+        height: 100%;
+    }
+
+    .loginBtn:focus {
+        outline: none;
+    }
+
+    .loginBtn:active {
+        box-shadow: inset 0 0 0 32px rgba(0,0,0,0.1);
+    }
+
 .loginBtn--google {
-  /*font-family: "Roboto", Roboto, arial, sans-serif;*/
-  background: #DD4B39;
-}
-.loginBtn--google:before {
-  border-right: #BB3F30 1px solid;
-  background: url('https://s3-us-west-2.amazonaws.com/s.cdpn.io/14082/icon_google.png') 6px 6px no-repeat;
-}
-.loginBtn--google:hover,
-.loginBtn--google:focus {
-  background: #E74B37;
-}
-.RegisterLink{
-    text-decoration:none;
-    font-size:10px;
-    color:blueviolet
-}
-.RegisterLink:hover{
-    text-decoration:none;
-    color:blue
-}
-#logo{
-	border-top-left-radius:20px; 
-	border-bottom-right-radius:20px; 
-	padding-left:5px; 
-	padding-right:5px;
+    /*font-family: "Roboto", Roboto, arial, sans-serif;*/
+    background: #DD4B39;
 }
 
-#loginBtn{
-	margin-top:8px;
-}
-.loginBtnBakcground{
-    color:#fff;
-    background-color:#f39c12
+    .loginBtn--google:before {
+        border-right: #BB3F30 1px solid;
+        background: url('https://s3-us-west-2.amazonaws.com/s.cdpn.io/14082/icon_google.png') 6px 6px no-repeat;
+    }
+
+    .loginBtn--google:hover,
+    .loginBtn--google:focus {
+        background: #E74B37;
+    }
+
+.RegisterLink {
+    text-decoration: none;
+    font-size: 12px;
+    color: blueviolet;
 }
 
-#loginBtn a { 
-    border-bottom-left-radius:10px;
-    border-bottom-right-radius:10px;
-	font-family:"Times New Roman", Times, serif; 
-	font-size:18px; 
-	font-weight:bold; 
-	color:#FFF; 
-	padding-left:5px; 
-	padding-right:5px;
-	padding-top:10px; 
-	padding-bottom:5px;
-}
-#loginBtn a:hover{
-	background:#2573a7; 
-	font-style:normal; 
-	color:#FFF; 
-	text-decoration:none
-}
-#loginBtn ul{
-	list-style:none;
-}
-#loginBtn ul li{
-	display:none;
-	background-color:#C30;
-	color:#FFF;
-	opacity:.7;
-}
-#loginBtn ul li ul li:hover{
-	background-color:#C60;
-}
-#loginBtn ul li:hover ul li{
-	display:block;
+    .RegisterLink:hover {
+        text-decoration: none;
+        color: blue;
+    }
+
+#logo {
+    border-top-left-radius: 20px;
+    border-bottom-right-radius: 20px;
+    padding-left: 5px;
+    padding-right: 5px;
 }
 
-.headitems{
-	font:"MS Serif", "New York", serif;
-	font-weight:normal; 
-	font-size:11px
+#loginBtn {
+    margin-top: 8px;
 }
-.headerContainer{
-	margin-top:0px; 
-	border-bottom-style:solid; 
-	border-bottom-color:#CCC; 
-	border-bottom-width:thin;
-}
-.menu{
-	margin-top:5px
-}
-.menuItems{
-	alignment-adjust:middle
-}
-.menuItems li{
-	float:right; 
-	list-style-type:none; 
-	margin:10px; 
-	padding:10px
-}
-.menuItems li a{
-	font-size:18px; 
-	font-weight:bold; 
-	font-family:Arial, Helvetica, sans-serif; 
-	color:#fff; 
-	display:block
-}
-.menuItem:hover{
-    color:#fff;background-color:#a63326
-}
-.menuItemActive{
-    color:#fff;background-color:#a63326
-}
-.menuItems li a:hover{
-	text-decoration:none;
-}
-.menuActive{
-	text-outline:#900
-}
-.secHeading{
-	text-align-last:center; 
-	font-family:"Comic Sans MS", cursive; 
-	font-size:24px; 
-	font-weight:normal; 
-	margin-top:10px;
-}
-#addressBar{
-	color:#000
-}
-.headerOp{
-	opacity:0.75
-}
-.sunop{}
-.sunop a{
-	font-weight:bold; 
-	font-family:Arial, Helvetica, sans-serif; 
-	color:#FFF; 
-	margin-top:170px; 
-	text-decoration:none; 
-	font-size:18px;
-}
-.sunop a{
-	bottom:8px; 
-	right:16px
-}
-.sunopImage{
-	left:0px; 
-	right:5px; 
-	width:95%; 
-	height:100%; 
-	margin-left:5px
-}
-.sunopImage:hover{
-	opacity:.5
-}
-.sunop a:hover{
-	text-decoration:none; 
-	color:#003; 
-}
-.hotItems:hover{opacity:.5; 
-height:220px
-}
-.itemLink{
-	font-family:Verdana, Geneva, sans-serif;
-	font-size:10px;
-	font-stretch:expanded;
-	font-style:normal;
-	font-weight:600;
-	color:#000;
-	text-align:center
-}
-.itemLink:hover{
-	font-size:11px;
-	color:#000
-}
-.itemcell{
-	padding-top:2px;
-	text-align:center
-}
-.hotItems{
-	width:95vh;
-	height:95vh;
-}
-.footer{
-	font-size:12px;
-	font-style:italic;
-	text-decoration:underline;
-	background-color:black;
-	color:#FFF;
-}
-.footerItem{
-	border-left:thin;
-	border-left-color:#666;
-	border-left-style:solid;
-}
-.footerItem p{
-	font-size:24px;
-	text-align:right;
-	float:right;
-}
-.footerItem p a:hover{
-	color:#FFF;
-}
-.designedby{
-	text-align:center;
-	font-family:"Times New Roman", Times, serif;
-	font-size:12px;
-}
-.designedby p a:hover{
-	font-size:14px;
-	color:#FFF;
-}
-.addToCartBtn{
-	background-color:#C30;
-	font-size:12px;
-	color:#FFF;
-	font-weight:700;
-	text-align:center;
-    padding-bottom:10px;
-    padding-top:10px;
-}
-.addToCartBtn a{
-	font-size:16px;
-	font-weight:normal;
-	color:#FFF;
-}
-.viewItemBtn{
-	background-color:#06F;
-	text-align:center;
-    padding-bottom:10px;
-    padding-top:10px;
-	
-}
-.viewItemBtn a{
-	font-size:16px;
-	font-weight:normal;
-	color:#FFF;
-}
-.addToCartBtn:hover{
-	background-color:#930;
-	text-decoration:underline;
-	color:#FFF;
-}
-.addToCartBtn a:hover{
-	text-decoration:none;
-	color:#FFF;
-}
-.viewItemBtn:hover{
-	background-color:#06C;
-	text-decoration:underline;
-	color:#FFF;
-    
-}
-.viewItemBtn a:hover{
-	font-size:16px;
-	font-weight:normal;
-	text-decoration:none;
-	color:#FFF;
-}
-.showingItems{
-	font-size:16px;
-	font-family:'Arial Rounded MT';
-	color:#000;
-	text-decoration:none;
-	text-align:center;
-	font-weight:bold;
-}
-.showingItemsPrice{
-	font-size:16px;
-	font:"Comic Sans MS", cursive;
-	color:#000;
-	font-weight:lighter;
-	text-align:center;
-}
-.show-discount{
-    color:orangered;
-    font-family:'Arial Rounded MT';
-    font-weight:bold;
-    font-size:12px;
 
+.loginBtnBakcground {
+    color: #fff;
+    background-color: #f39c12;
 }
-.table-show-item{
-    margin-bottom:10px;
+
+#loginBtn a {
+    border-bottom-left-radius: 10px;
+    border-bottom-right-radius: 10px;
+    font-family: "Times New Roman", Times, serif;
+    font-size: 18px;
+    font-weight: bold;
+    color: #FFF;
+    padding-left: 5px;
+    padding-right: 5px;
+    padding-top: 10px;
+    padding-bottom: 5px;
+}
+
+    #loginBtn a:hover {
+        background: #2573a7;
+        font-style: normal;
+        color: #FFF;
+        text-decoration: none;
+    }
+
+#loginBtn ul {
+    list-style: none;
+}
+
+    #loginBtn ul li {
+        display: none;
+        background-color: #C30;
+        color: #FFF;
+        opacity: .7;
+    }
+
+        #loginBtn ul li ul li:hover {
+            background-color: #C60;
+        }
+
+        #loginBtn ul li:hover ul li {
+            display: block;
+        }
+
+.headitems {
+    font: "MS Serif", "New York", serif;
+    font-weight: normal;
+    font-size: 11px;
+}
+
+.headerContainer {
+    margin-top: 0px;
+    border-bottom-style: solid;
+    border-bottom-color: #CCC;
+    border-bottom-width: thin;
+}
+
+.menu {
+    margin-top: 5px;
+}
+
+.menuItems {
+    alignment-adjust: middle;
+}
+
+    .menuItems li {
+        float: right;
+        list-style-type: none;
+        margin: 10px;
+        padding: 10px;
+    }
+
+        .menuItems li a {
+            font-size: 18px;
+            font-weight: bold;
+            font-family: Arial, Helvetica, sans-serif;
+            color: #fff;
+            display: block;
+        }
+
+.menuItem:hover {
+    color: #fff;
+    background-color: #a63326;
+}
+
+.menuItemActive {
+    color: #fff;
+    background-color: #a63326;
+}
+
+.menuItems li a:hover {
+    text-decoration: none;
+}
+
+.menuActive {
+    text-outline: #900;
+}
+
+.secHeading {
+    text-align-last: center;
+    font-family: "Comic Sans MS", cursive;
+    font-size: 24px;
+    font-weight: normal;
+    margin-top: 10px;
+}
+
+#addressBar {
+    color: #000;
+}
+
+.headerOp {
+    opacity: 0.75;
+}
+
+.sunop {
+}
+
+    .sunop a {
+        font-weight: bold;
+        font-family: Arial, Helvetica, sans-serif;
+        color: #FFF;
+        margin-top: 170px;
+        text-decoration: none;
+        font-size: 18px;
+    }
+
+    .sunop a {
+        bottom: 8px;
+        right: 16px;
+    }
+
+.sunopImage {
+    left: 0px;
+    right: 5px;
+    width: 95%;
+    height: 100%;
+    margin-left: 5px;
+}
+
+    .sunopImage:hover {
+        opacity: .5;
+    }
+
+.sunop a:hover {
+    text-decoration: none;
+    color: #003;
+}
+
+.hotItems:hover {
+    opacity: .5;
+    height: 220px;
+}
+
+.itemLink {
+    font-family: Verdana, Geneva, sans-serif;
+    font-size: 10px;
+    font-stretch: expanded;
+    font-style: normal;
+    font-weight: 600;
+    color: #000;
+    text-align: center;
+}
+
+    .itemLink:hover {
+        font-size: 11px;
+        color: #000;
+    }
+
+.itemcell {
+    padding-top: 2px;
+    text-align: center;
+}
+
+.hotItems {
+    width: 95vh;
+    height: 95vh;
+}
+
+.footer {
+    font-size: 12px;
+    font-style: italic;
+    text-decoration: underline;
+    background-color: black;
+    color: #FFF;
+}
+
+.footerItem {
+    border-left: thin;
+    border-left-color: #666;
+    border-left-style: solid;
+}
+
+    .footerItem p {
+        font-size: 24px;
+        text-align: right;
+        float: right;
+    }
+
+        .footerItem p a:hover {
+            color: #FFF;
+        }
+
+.designedby {
+    text-align: center;
+    font-family: "Times New Roman", Times, serif;
+    font-size: 12px;
+}
+
+    .designedby p a:hover {
+        font-size: 14px;
+        color: #FFF;
+    }
+
+.addToCartBtn {
+    background-color: #C30;
+    font-size: 12px;
+    color: #FFF;
+    font-weight: 700;
+    text-align: center;
+    padding-bottom: 10px;
+    padding-top: 10px;
+    padding-left: 5px;
+    padding-right: 5px;
+}
+.OrderNowBtn{
+    background-color: #2c3e50;
+    font-size: 12px;
+    color: #FFF;
+    font-weight: 700;
+    text-align: center;
+    padding-bottom: 10px;
+    padding-top: 10px;
+    padding-left: 5px;
+    padding-right: 5px;
+}
+    .addToCartBtn a {
+        font-size: 16px;
+        font-weight: normal;
+        color: #FFF;
+    }
+.OrderNowBtn a{
+    font-size: 16px;
+        font-weight: normal;
+        color: #FFF;
+}
+.viewItemBtn {
+    background-color: #06F;
+    text-align: center;
+    padding-bottom: 10px;
+    padding-top: 10px;
+    padding-left: 5px;
+        padding-right: 5px;
+}
+
+    .viewItemBtn a {
+        font-size: 16px;
+        font-weight: normal;
+        color: #FFF;
+        padding-left: 5px;
+        padding-right: 5px;
+    }
+
+.addToCartBtn:hover {
+    background-color: #930;
+    text-decoration: underline;
+    color: #FFF;
+}
+.OrderNowBtn:hover{
+    background-color: #1b2631;
+    text-decoration: underline;
+    color: #FFF;
+}
+.addToCartBtn a:hover {
+    text-decoration: none;
+    color: #FFF;
+}
+.OrderNowBtn a:hover{
+    text-decoration: none;
+    color: #FFF;
+}
+.viewItemBtn:hover {
+    background-color: #06C;
+    text-decoration: underline;
+    color: #FFF;
+}
+
+.viewItemBtn a:hover {
+    font-size: 16px;
+    font-weight: normal;
+    text-decoration: none;
+    color: #FFF;
+}
+
+.showingItems {
+    font-size: 16px;
+    font-family: 'Arial Rounded MT';
+    color: #000;
+    text-decoration: none;
+    text-align: center;
+    font-weight: bold;
+}
+
+.showingItemsPrice {
+    font-size: 16px;
+    font: "Comic Sans MS", cursive;
+    color: #000;
+    font-weight: lighter;
+    text-align: center;
+}
+
+.show-discount {
+    color: orangered;
+    font-family: 'Arial Rounded MT';
+    font-weight: bold;
+    font-size: 12px;
+}
+
+.table-show-item {
+    margin-bottom: 10px;
 }

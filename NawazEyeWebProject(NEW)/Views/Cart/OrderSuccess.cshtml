@@ -1,0 +1,66 @@
+﻿@model NawazEyeWebProject_NEW_.ViewModels.OrderSuccessViewModel
+
+@{
+    ViewBag.Title = "Order Success";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<h2>Order Details</h2>
+
+<div class="col-md-4">
+    <h4>Dear @Model.BuyersName,<br>&emsp;Here's the details of your order</h4>
+    <hr />
+    <dl class="dl-horizontal">
+        <dt>
+            @Html.DisplayNameFor(model => model.OrderId)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.OrderId)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.DiscountAvailed)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.DiscountAvailed)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.DeliveryCharges)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.DeliveryCharges)
+        </dd>
+        <dt>
+            @Html.DisplayNameFor(model => model.TotalPrice)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.TotalPrice)
+        </dd>
+        <dt>
+            @Html.DisplayNameFor(model => model.GTotal)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.GTotal)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.Status)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Status)
+        </dd>
+
+    </dl>
+        <h3>Thank's for Shopping.</h3>
+</div>
+<div class="col-md-8">
+    <img src="~/images/Cart/orderSuccess.jpg" class="img-responsive" />
+</div>
+<br />

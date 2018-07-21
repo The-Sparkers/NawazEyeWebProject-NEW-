@@ -16,7 +16,7 @@ namespace NawazEyeWebProject_NEW_.Models
         {
             SetValues(id);
         }
-        public Order(Cart cart, DateTime orderDate, PromoCode promoCode=null)
+        public Order(Cart cart, DateTime orderDate, PromoCode promoCode = null)
         {
             try
             {
@@ -27,7 +27,14 @@ namespace NawazEyeWebProject_NEW_.Models
                 id = (int)cmd.ExecuteScalar();
                 con.Close();
                 SetValues(id);
-                query = "INSERT INTO [ORDER_HAS_CART_WITH_PROMO] ([OrderId] ,[CartId] ,[PromoId]) VALUES (" + id + " ," + cart.CartId + " ," + promoCode.PromoId + ")";
+                if (promoCode != null)
+                {
+                    query = "INSERT INTO [ORDER_HAS_CART_WITH_PROMO] ([OrderId] ,[CartId] ,[PromoId]) VALUES (" + id + " ," + cart.CartId + " ," + promoCode.PromoId + ")";
+                }
+                else
+                {
+                    query = "INSERT INTO [ORDER_HAS_CART_WITH_PROMO] ([OrderId] ,[CartId]) VALUES (" + id + " ," + cart.CartId + ")";
+                }
                 cmd = new SqlCommand(query, con);
                 con.Open();
                 if (cmd.ExecuteNonQuery() != 1)
@@ -162,7 +169,7 @@ namespace NawazEyeWebProject_NEW_.Models
         {
             get
             {
-                decimal total=0;
+                decimal total = 0;
                 try
                 {
                     con = new SqlConnection(ConfigurationManager.ConnectionStrings["conString"].ConnectionString);
@@ -172,7 +179,7 @@ namespace NawazEyeWebProject_NEW_.Models
                     SqlDataReader reader = cmd.ExecuteReader();
                     while (reader.Read())
                     {
-                       Sunglasses s = new Sunglasses((int)reader[0]);
+                        Sunglasses s = new Sunglasses((int)reader[0]);
                         total += s.GetDiscountedPrice();
                     }
                     con.Close();
@@ -200,7 +207,7 @@ namespace NawazEyeWebProject_NEW_.Models
             try
             {
                 con = new SqlConnection(ConfigurationManager.ConnectionStrings["conString"].ConnectionString);
-                query = "select p.Discount from PROMO_CODES p, ORDER_HAS_CART_WITH_PROMO o where p.PromoId=o.PromoId and o.OrderId=" + id; 
+                query = "select p.Discount from PROMO_CODES p, ORDER_HAS_CART_WITH_PROMO o where p.PromoId=o.PromoId and o.OrderId=" + id;
                 cmd = new SqlCommand(query, con);
                 con.Open();
                 decimal discount = (int)cmd.ExecuteScalar();
@@ -220,9 +227,9 @@ namespace NawazEyeWebProject_NEW_.Models
             List<Order> l = new List<Order>();
             try
             {
-              SqlConnection  con = new SqlConnection(ConfigurationManager.ConnectionStrings["conString"].ConnectionString);
+                SqlConnection con = new SqlConnection(ConfigurationManager.ConnectionStrings["conString"].ConnectionString);
                 string query = "select OrderId from ORDERS where Status LIKE '%" + status + "%'";
-              SqlCommand  cmd = new SqlCommand(query, con);
+                SqlCommand cmd = new SqlCommand(query, con);
                 con.Open();
                 SqlDataReader reader = cmd.ExecuteReader();
                 while (reader.Read())

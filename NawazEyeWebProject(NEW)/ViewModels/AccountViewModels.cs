@@ -5,6 +5,7 @@ namespace NawazEyeWebProject_NEW_.ViewModels
 {
     public class ExternalLoginConfirmationViewModel
     {
+        string phNo;
         [Required]
         [Display(Name = "Email")]
         public string Email { get; set; }
@@ -13,9 +14,8 @@ namespace NawazEyeWebProject_NEW_.ViewModels
         public string FullName { get; set; }
         [Required]
         [Phone]
-        [Display(Name ="Phone Number")]
-        [DisplayFormat(DataFormatString ="+92-{n}")]
-        [StringLength (10,ErrorMessage ="Please Enter A Valid Phone Number", MinimumLength = 10)]
+        [Display(Name = "Phone Number")]
+        [StringLength(10, ErrorMessage = "Please Enter A Valid Phone Number", MinimumLength = 10)]
         public string PhoneNumber { get; set; }
         [Required]
         [Display(Name ="City")]
@@ -92,7 +92,6 @@ namespace NawazEyeWebProject_NEW_.ViewModels
         public string Email { get; set; }
         [Required]
         [Phone]
-        [DisplayFormat(DataFormatString = "+92-{n}")]
         [Display(Name = "Phone Number")]
         public string PhoneNumber { get; set; }
         [Required]

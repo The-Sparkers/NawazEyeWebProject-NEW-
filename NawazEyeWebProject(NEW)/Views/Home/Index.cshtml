@@ -53,18 +53,18 @@
                     <div class="col-md-12">
                         <div class="w3-content" style="max-width:1200px">
                             @{
-                                int i = 1;
-                                foreach (var item in Model.HotItems)
-                                {
-                                    string lnk = "/Home/ViewProduct/" + item.Id;
-                                    <a href="@lnk"><img class="mySlides2" src="@item.Image" style="width:100%" title="@item.Name" /></a>
+                                    int i = 1;
+                                    foreach (var item in Model.HotItems)
+                                    {
+                                        string lnk = Url.Action("ViewProduct", new { id = item.Id });
+                                    <a href="@lnk"><img class="mySlides2" src="@Url.Content(item.Image)" style="width:100%" title="@item.Name" /></a>
+                                    }
                                 }
-                            }
                             <div class="w3-row-padding w3-section">
                                 @foreach (var item in Model.HotItems)
                                 {
                                     <div class="w3-col s4">
-                                        <img class="demo w3-opacity w3-hover-opacity-off" src="@item.Image" style="width:100%" onclick="currentDiv(@i)" title="@item.Name">
+                                        <img class="demo w3-opacity w3-hover-opacity-off" src="@Url.Content(item.Image)" style="width:100%" onclick="currentDiv(@i)" title="@item.Name">
                                     </div>
                                     i++;
                                 }
@@ -88,11 +88,11 @@
     <div class="row">
         @foreach (var item in Model.PopSunglasses)
         {
-            string lnk = "/Home/ViewProduct/" + item.Id;
+            string lnk = Url.Action("ViewProduct", new { id = item.Id });
             <div class="col-md-3 col-xs-12 col-sm-6">
                 <table class="table-responsive">
                     <tr>
-                        <td class="itemcell"><img class="img-thumbnail img-thumbnail-custom" src="@item.Image"  height="500"/></td>
+                        <td class="itemcell"><img class="img-thumbnail img-thumbnail-custom" src="@Url.Content(item.Image)"  height="500"/></td>
                     </tr>
                     <tr>
                         <td class="itemcell" align="center"><a href="@lnk" class="itemLink">@item.Name</a></td>
@@ -113,11 +113,11 @@
     <div class="row">
         @foreach (var item in Model.PopPrescriptionGlasses)
         {
-            string lnk = "/Home/ViewProduct/" + item.Id;
+            string lnk = Url.Action("ViewProduct", new { id = item.Id });
             <div class="col-md-3 col-xs-12 col-sm-6">
                 <table class="table-responsive">
                     <tr>
-                        <td class="itemcell"><img class="img-thumbnail img-thumbnail-custom" src="@item.Image"/></td>
+                        <td class="itemcell"><img class="img-thumbnail img-thumbnail-custom" src="@Url.Content(item.Image)"/></td>
                     </tr>
                     <tr>
                         <td class="itemcell" align="center"><a href="@lnk" class="itemLink">@item.Name</a></td>

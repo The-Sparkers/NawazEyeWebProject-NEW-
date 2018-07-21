@@ -188,6 +188,7 @@
     <Compile Include="Models\PromoCode.cs" />
     <Compile Include="Models\Sungalsses.cs" />
     <Compile Include="ViewModels\AccountViewModels.cs" />
+    <Compile Include="ViewModels\CartViewModels.cs" />
     <Compile Include="ViewModels\FramesViewModels.cs" />
     <Compile Include="ViewModels\HomeViewModels.cs" />
     <Compile Include="ViewModels\IdentityModels.cs" />
@@ -209,10 +210,15 @@
     <Content Include="images\Accounts\loginAccount.jpg" />
     <Content Include="images\Accounts\registerAccount.jpg" />
     <Content Include="images\Accounts\registerExternalLogin.jpg" />
+    <Content Include="images\Cart\orderSuccess.jpg" />
+    <Content Include="images\Cart\registerBuyer.jpg" />
     <Content Include="images\Home\parallexImage.jpg" />
     <Content Include="images\Home\SliderImg1.jpg" />
     <Content Include="images\Home\SliderImg2.jpg" />
     <Content Include="images\Home\SliderImg3.jpg" />
+    <Content Include="images\Shared\adult-beard-blue-1043473.jpg" />
+    <Content Include="images\Shared\arm-eyeglasses-eyewear-1068866.jpg" />
+    <Content Include="images\Shared\baby-boy-child-838879.jpg" />
     <Content Include="images\Shared\boy-bright-close-up-792326.jpg" />
     <Content Include="images\Shared\HeadLogo.png" />
     <Content Include="images\Uploads\2003_805289126577_shad_fr.jpg" />
@@ -326,16 +332,20 @@
     <Content Include="Views\Account\Login.cshtml" />
     <Content Include="Views\Cart\Index.cshtml" />
     <Content Include="Views\Shared\_NavBarPartial.cshtml" />
-    <Content Include="Views\Home\_HotItemsPartial.cshtml" />
     <Content Include="Views\Shared\_SearchPartialView.cshtml" />
     <Content Include="Views\Home\ViewProduct.cshtml" />
     <Content Include="Views\Sunglasses\Index.cshtml" />
     <Content Include="Views\Frames\Index.cshtml" />
+    <Content Include="Views\Cart\OrderAnonymous.cshtml" />
+    <Content Include="Views\Cart\OrderPrescriptionGlasses.cshtml" />
+    <Content Include="Views\Cart\TimedOut.cshtml" />
+    <Content Include="Views\Cart\OrderSuccess.cshtml" />
+    <Content Include="Views\Cart\OrderSunglasses.cshtml" />
+    <Content Include="Views\Shared\Close.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
     <Folder Include="images\Prescriptions\" />
-    <Folder Include="Views\View\" />
   </ItemGroup>
   <ItemGroup>
     <Content Include="fonts\glyphicons-halflings-regular.woff" />

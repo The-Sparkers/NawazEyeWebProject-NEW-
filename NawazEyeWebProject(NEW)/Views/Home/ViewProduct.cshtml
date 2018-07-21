@@ -6,19 +6,40 @@
     Layout = "~/Views/Shared/_Layout.cshtml";
 }
 
-<h2>View Product</h2>
+<div class="col-md-6">
+    <div class="w3-content" style="max-width:1200px">
+        @{
+            string path = System.Configuration.ConfigurationManager.AppSettings["ItemsImagePath"];
+            for (int i = 0; i < Model.Images.Count; i++)
+            {
+                string src = path + Model.Images[i];
+                <img class="mySlides2" src="@Url.Content(src)" style="width:100%">
+            }
+        }
 
-<div>
-    <hr />
+        <div class="w3-row-padding w3-section">
+            @{
+                for (int i = 1; i <= Model.Images.Count; i++)
+                {
+                    string src = path + Model.Images[i - 1];
+                    <div class="w3-col s4">
+                        <img class="demo w3-opacity w3-hover-opacity-off" src="@src" style="width:100%" onclick="currentDiv(@i.ToString())">
+                    </div>
+                }
+            }
+        </div>
+    </div>
+</div>
+<div class="col-md-6 Product-Description">
+    <h2>@Model.Name</h2>
+    <table class="table-responsive">
+        <tr>
+            <td><h1>Rs. @Model.Price</h1></td>
+            <td><h3>On Discount: Rs. @Model.DiscountedPrice</h3></td>
+            <td align="right"><h6>@Model.Status</h6></td>
+        </tr>
+    </table>
     <dl class="dl-horizontal">
-        <dt>
-            @Html.DisplayNameFor(model => model.Name)
-        </dt>
-
-        <dd>
-            @Html.DisplayFor(model => model.Name)
-        </dd>
-
         <dt>
             @Html.DisplayNameFor(model => model.Description)
         </dt>
@@ -28,83 +49,46 @@
         </dd>
 
         <dt>
-            @Html.DisplayNameFor(model => model.Price)
-        </dt>
-
-        <dd>
-            @Html.DisplayFor(model => model.Price)
-        </dd>
-
-        <dt>
-            @Html.DisplayNameFor(model => model.DiscountedPrice)
-        </dt>
-
-        <dd>
-            @Html.DisplayFor(model => model.DiscountedPrice)
-        </dd>
-
-        <dt>
-            @Html.DisplayNameFor(model => model.PrimaryImage)
-        </dt>
-
-        <dd>
-            @Html.DisplayFor(model => model.PrimaryImage)
-        </dd>
-
-        <dt>
-            @Html.DisplayNameFor(model => model.IsSunglasses)
-        </dt>
-
-        <dd>
-            @Html.DisplayFor(model => model.IsSunglasses)
-        </dd>
-
-        <dt>
             @Html.DisplayNameFor(model => model.FrameColor)
         </dt>
 
         <dd>
-            @Html.DisplayFor(model => model.FrameColor)
+            <span style="border-radius:300px; background-color:@Model.FrameColor; padding:0px 15px 0px 15px; margin-top:10px; margin-bottom:5px;"></span>
+            <br />
         </dd>
+        @if (Model.IsSunglasses)
+        {
+            <dt>
+                @Html.DisplayNameFor(model => model.LensColor)
+            </dt>
 
-        <dt>
-            @Html.DisplayNameFor(model => model.LensColor)
-        </dt>
+            <dd>
+                <span style="border-radius:300px; background-color:@Model.LensColor; padding:0px 15px 0px 15px; margin-top:10px; margin-bottom:5px;"></span>
+                <br />
+            </dd>
+        }
+        else
+        {
+            <dt>
+                @Html.DisplayNameFor(model => model.Frame)
+            </dt>
 
-        <dd>
-            @Html.DisplayFor(model => model.LensColor)
-        </dd>
+            <dd>
+                @Html.DisplayFor(model => model.Frame)
+            </dd>
 
-        <dt>
-            @Html.DisplayNameFor(model => model.Frame)
-        </dt>
+            <dt>
+                @Html.DisplayNameFor(model => model.Lens)
+            </dt>
 
-        <dd>
-            @Html.DisplayFor(model => model.Frame)
-        </dd>
-
-        <dt>
-            @Html.DisplayNameFor(model => model.Lens)
-        </dt>
-
-        <dd>
-            @Html.DisplayFor(model => model.Lens)
-        </dd>
-
-        <dt>
-            @Html.DisplayNameFor(model => model.Status)
-        </dt>
-
-        <dd>
-            @Html.DisplayFor(model => model.Status)
-        </dd>
-
+            <dd>
+                @Html.DisplayFor(model => model.Lens)
+            </dd>
+        }
     </dl>
 </div>
+
 <p>
-    @Html.ActionLink("Edit", "Edit", new { id = Model.Id }) |
-    @Html.ActionLink("Back to List", "Index")
+    @Html.ActionLink("Add To Cart", "AddToCart", "Cart", new { id = Model.Id }, new { @class = "addToCartBtn" }) |
+    @Html.ActionLink("Order Now", "Order", "Cart", new { id = Model.Id }, new { @class = "OrderNowBtn" })
 </p>
-@section Scripts {
-    @Scripts.Render("~/Scripts/ImageGallery.js")
-}

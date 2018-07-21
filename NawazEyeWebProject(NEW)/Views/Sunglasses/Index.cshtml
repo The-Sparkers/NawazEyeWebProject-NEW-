@@ -14,12 +14,12 @@
                     <td class="show-discount" align="right">@item.Discount</td>
                 </tr>
                 <tr>
-                    <td colspan="3" align="center"><img src="@item.Image" class="img-thumbnail-custom" /></td>
+                    <td colspan="3" align="center"><img src="@Url.Content(item.Image)" class="img-thumbnail-custom" /></td>
                 </tr>
                 <tr>
                     <td class="showingItemsPrice w3-metro-darken">Rs. @item.Price</td>
-                    <td><div class="addToCartBtn"><a class="" href="@Url.Action("AddToCart", "Cart", new { @id = @item.Id })">Add to Cart</a></div></td>
-                    <td><div class="viewItemBtn"><a class="" href="@Url.Action("ViewProduct", "Home", new { @id = @item.Id })">View</a></div>
+                    <td><div class="addToCartBtn"><a class="" href="@Url.Action("AddToCart", "Cart", new { id = @item.Id })">Add to Cart</a></div></td>
+                    <td><div class="viewItemBtn"><a class="" href="@Url.Action("ViewProduct", "Home", new { id = @item.Id })">View</a></div>
                 </tr>
             </table>
         </div>
@@ -27,5 +27,5 @@
 
 </div>
 <div class="col-md-3">
-    <img src="~/images/Shared/boy-bright-close-up-792326.jpg" class="img-responsive" />
+    
 </div>

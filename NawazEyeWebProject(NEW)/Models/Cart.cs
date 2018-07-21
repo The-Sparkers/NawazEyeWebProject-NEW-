@@ -133,14 +133,14 @@ namespace NawazEyeWebProject_NEW_.Models
                 try
                 {
                     SqlConnection con = new SqlConnection(ConfigurationManager.ConnectionStrings["conString"].ConnectionString);
-                    string query = "select ProductId, Quantity, Prescription from CART_HAS_PRESCRPTION_GLASSES where CartId=" + id;
+                    string query = "select ProductId, Quantity, Prescription, LensName from CART_HAS_PRESCRPTION_GLASSES where CartId=" + id;
                     SqlCommand cmd = new SqlCommand(query, con);
                     con.Open();
                     SqlDataReader reader = cmd.ExecuteReader();
                     while (reader.Read())
                     {
                         PrescriptionGlasses p = new PrescriptionGlasses((int)reader[0]);
-                        CartPrescriptionGalsses c = new CartPrescriptionGalsses { PrescriptionGlasses = p, Quantity = (int)reader[1], Prescription = (string)reader[2] };
+                        CartPrescriptionGalsses c = new CartPrescriptionGalsses { PrescriptionGlasses = p, Quantity = (int)reader[1], Prescription = (string)reader[2], LensName=(string)reader[3] };
                         l.Add(c);
                     }
                     con.Close();
@@ -195,12 +195,12 @@ namespace NawazEyeWebProject_NEW_.Models
                 throw e;
             }
         }
-        public void AddPrescriptionglasses(PrescriptionGlasses p, int quantity, string prescription)
+        public void AddPrescriptionglasses(PrescriptionGlasses p, int quantity, string prescription, string lens)
         {
             try
             {
                 con = new SqlConnection(ConfigurationManager.ConnectionStrings["conString"].ConnectionString);
-                query = "INSERT INTO [CART_HAS_PRESCRPTION_GLASSES] ([CartId] ,[ProductId] ,[Quantity]) VALUES (" + CartId + " ," + p.ProductId + " ," + quantity + ", " + prescription + ")";
+                query = "INSERT INTO [CART_HAS_PRESCRPTION_GLASSES] ([CartId] ,[ProductId] ,[Quantity],[Prescription],[LensName]) VALUES (" + CartId + " ," + p.ProductId + " ," + quantity + ", '" + prescription + "','" + lens + "')"; 
                 cmd = new SqlCommand(query, con);
                 con.Open();
                 if (cmd.ExecuteNonQuery() == 1)
@@ -327,5 +327,6 @@ namespace NawazEyeWebProject_NEW_.Models
                 }
             }
         }
+        public string LensName { get; set; }
     }
 }

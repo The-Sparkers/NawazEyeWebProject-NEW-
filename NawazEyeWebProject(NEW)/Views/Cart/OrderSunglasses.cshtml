@@ -1,0 +1,79 @@
+﻿@model NawazEyeWebProject_NEW_.ViewModels.OrderSunglassesViewModel
+
+@{
+    ViewBag.Title = "Order Sunglasses";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+@{
+    ViewBag.Title = Model.Name;
+    Layout = "~/Views/Shared/_Layout.cshtml";
+    List<SelectListItem> lst = new List<SelectListItem>();
+    for (int i = 1; i <= Model.Quantity; i++)
+    {
+        SelectListItem item = new SelectListItem()
+        {
+            Text = i.ToString(),
+            Value = i.ToString()
+        };
+        lst.Add(item);
+    }
+    Model.Quantity = Convert.ToInt32(null);
+}
+
+<div class="col-md-6">
+    <div class="w3-content" style="max-width:1200px">
+        @{
+            string path = System.Configuration.ConfigurationManager.AppSettings["ItemsImagePath"];
+            for (int i = 0; i < Model.Images.Count; i++)
+            {
+                string src = path + Model.Images[i];
+                <img class="mySlides2" src="@Url.Content(src)" style="width:100%">
+            }
+        }
+
+        <div class="w3-row-padding w3-section">
+            @{
+                for (int i = 1; i <= Model.Images.Count; i++)
+                {
+                    string src = path + Model.Images[i - 1];
+                    <div class="w3-col s4">
+                        <img class="demo w3-opacity w3-hover-opacity-off" src="@src" style="width:100%" onclick="currentDiv(@i.ToString())">
+                    </div>
+                }
+            }
+        </div>
+    </div>
+</div>
+<div class="col-md-6 Product-Description">
+    <h2>@Model.Name</h2>
+    <table class="table-responsive">
+        <tr>
+            <td><h1>Rs. @Model.Price</h1></td>
+            <td><h3>On Discount: Rs. @Model.DiscountedPrice</h3></td>
+            <td align="right"><h6>@Model.Status</h6></td>
+        </tr>
+    </table>
+    @using (Html.BeginForm("OrderSunglasses", "Cart", FormMethod.Post, new { @class = "form-horizontal", role = "form" }))
+    {
+        @Html.AntiForgeryToken();
+        @Html.HiddenFor(m => m.DiscountedPrice);
+        @Html.HiddenFor(m => m.Id);
+        @Html.HiddenFor(m => m.Images);
+        @Html.HiddenFor(m => m.Name);
+        @Html.HiddenFor(m => m.Price);
+        @Html.HiddenFor(m => m.Status);
+        <div class="form-group">
+            <div class="col-md-12">
+                @Html.DropDownListFor(m => m.Quantity, lst, "Select Quantity", new { @class = "form-control" })
+                @Html.ValidationMessageFor(m => m.Quantity, "", new { @class = "text-danger" })
+            </div>
+            <div class="col-md-12">
+                <input type="submit" class="btn btn-default w3-flat-midnight-blue" value="Confirm" />
+                <h6>*Rs. @Model.DeliveryCharges will be added as Delivery Charges for your City. These charges may vary from city to city.</h6>
+            </div>
+        </div>
+    }
+</div>
+@section Scripts {
+    @Scripts.Render("~/bundles/jqueryval")
+}
