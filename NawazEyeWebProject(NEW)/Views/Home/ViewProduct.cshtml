@@ -4,12 +4,13 @@
 @{
     ViewBag.Title = "View " + Model.Name;
     Layout = "~/Views/Shared/_Layout.cshtml";
+    var urlRedirect = ViewBag.Message;
 }
 
 <div class="col-md-6">
     <div class="w3-content" style="max-width:1200px">
         @{
-            string path = System.Configuration.ConfigurationManager.AppSettings["ItemsImagePath"];
+            string path = ConfigurationManager.AppSettings["ItemsImagePath"];
             for (int i = 0; i < Model.Images.Count; i++)
             {
                 string src = path + Model.Images[i];
@@ -87,8 +88,7 @@
         }
     </dl>
 </div>
-
 <p>
-    @Html.ActionLink("Add To Cart", "AddToCart", "Cart", new { id = Model.Id }, new { @class = "addToCartBtn" }) |
+    @Html.ActionLink("Add To Cart", "AddToCart", "Cart", new { id = Model.Id, urlRedirect = @urlRedirect }, new { @class = "addToCartBtn" }) |
     @Html.ActionLink("Order Now", "Order", "Cart", new { id = Model.Id }, new { @class = "OrderNowBtn" })
 </p>

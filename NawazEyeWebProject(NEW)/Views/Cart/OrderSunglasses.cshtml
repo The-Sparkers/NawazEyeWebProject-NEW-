@@ -3,6 +3,7 @@
 @{
     ViewBag.Title = "Order Sunglasses";
     Layout = "~/Views/Shared/_Layout.cshtml";
+    string urlRedirect = ViewBag.Message;
 }
 @{
     ViewBag.Title = Model.Name;
@@ -53,7 +54,7 @@
             <td align="right"><h6>@Model.Status</h6></td>
         </tr>
     </table>
-    @using (Html.BeginForm("OrderSunglasses", "Cart", FormMethod.Post, new { @class = "form-horizontal", role = "form" }))
+    @using (Html.BeginForm("OrderSunglasses", "Cart", new { @urlRedirect = urlRedirect }, FormMethod.Post, new { @class = "form-horizontal", role = "form" }))
     {
         @Html.AntiForgeryToken();
         @Html.HiddenFor(m => m.DiscountedPrice);

@@ -17,12 +17,89 @@ namespace NawazEyeWebProject_NEW_.Controllers
         // GET: Cart
         public ActionResult Index()
         {
-            return View();
+            Cart c = new Account(User.Identity.GetUserId()).Buyer.GetCurrentCart();
+            ViewCartViewModel vcvm = new ViewCartViewModel();
+            if (c == null)
+            {
+                vcvm.IsCart = false;
+                return View(vcvm);
+            }
+            else
+            {
+                vcvm.IsCart = true;
+                vcvm.Id = c.CartId.ToString();
+                vcvm.DeliveryCharges = decimal.Round(c.Buyer.City.DeliverCharges).ToString();
+                foreach (var item in c.PrescriptionGlasses)
+                {
+                    if (vcvm.ItemsInCart == null)
+                    {
+                        vcvm.ItemsInCart = new List<ProductListViewModel>();
+                    }
+                    vcvm.ItemsInCart.Add(new ProductListViewModel()
+                    {
+                        ItemId=item.PrescriptionGlasses.ProductId,
+                        Name = item.PrescriptionGlasses.Name,
+                        Price = decimal.Round(item.PrescriptionGlasses.Price).ToString(),
+                        Quantity = item.Quantity.ToString(),
+                        Image = item.PrescriptionGlasses.PrimaryImage
+                    });
+                }
+                foreach (var item in c.Sunglasses)
+                {
+                    if (vcvm.ItemsInCart == null)
+                    {
+                        vcvm.ItemsInCart = new List<ProductListViewModel>();
+                    }
+                    vcvm.ItemsInCart.Add(new ProductListViewModel()
+                    {
+                        ItemId=item.Sunglasses.ProductId,
+                        Name = item.Sunglasses.Name,
+                        Price = decimal.Round(item.Sunglasses.Price).ToString(),
+                        Quantity = item.Quantity.ToString(),
+                        Image = item.Sunglasses.PrimaryImage
+                    });
+                }
+                return View(vcvm);
+            }
         }
         [HttpGet]
-        public ActionResult AddToCart(int id)
+        public ActionResult AddToCart(int id, string urlRedirect = null)
         {
-            return View();
+            ViewBag.Message = urlRedirect;
+            if (Product.IsSunglasses(id))
+            {
+                Sunglasses s = new Sunglasses(id);
+                OrderSunglassesViewModel osvm = new OrderSunglassesViewModel()
+                {
+                    DeliveryCharges = decimal.Round(new Account(User.Identity.GetUserId()).Buyer.City.DeliverCharges).ToString(),
+                    DiscountedPrice = decimal.Round(s.GetDiscountedPrice()).ToString(),
+                    Id = s.ProductId.ToString(),
+                    Images = s.Images,
+                    Name = s.Name,
+                    Price = decimal.Round(s.Price).ToString(),
+                    Quantity = s.Quantity,
+                    Status = s.Quantity + " Item(s) available"
+                };
+                return View("OrderSunglasses", osvm);
+            }
+            else if (Product.IsPrescriptionGlasses(id))
+            {
+                PrescriptionGlasses p = new PrescriptionGlasses(id);
+                OrderPrescriptionGlassesViewModel opvm = new OrderPrescriptionGlassesViewModel()
+                {
+                    DeliveryCharges = decimal.Round(new Account(User.Identity.GetUserId()).Buyer.City.DeliverCharges).ToString(),
+                    DiscountedPrice = decimal.Round(p.GetDiscountedPrice()).ToString(),
+                    Id = p.ProductId.ToString(),
+                    Images = p.Images,
+                    Lens = p.Lens.LensName,
+                    Name = p.Name,
+                    Price = decimal.Round(p.Price).ToString(),
+                    Quantity = p.Quantity,
+                    Status = p.Quantity + " Item(s) available"
+                };
+                return View("OrderPrescriptionGlasses", opvm);
+            }
+            return View("Error");
         }
         [HttpGet]
         [AllowAnonymous]
@@ -30,7 +107,8 @@ namespace NawazEyeWebProject_NEW_.Controllers
         {
             if (Request.IsAuthenticated)
             {
-                return View();
+                string url = Request.UrlReferrer.AbsoluteUri;
+                return RedirectToAction("AddToCart", new { id = id, urlRedirect = url }); 
             }
             else
             {
@@ -67,6 +145,7 @@ namespace NawazEyeWebProject_NEW_.Controllers
                         Status = p.Quantity + " Item(s) available",
                         Quantity = p.Quantity
                     };
+                    ViewBag.Message = null;
                     return View("OrderPrescriptionGlasses", opvm);
                 }
                 else
@@ -84,6 +163,7 @@ namespace NawazEyeWebProject_NEW_.Controllers
                         Quantity = s.Quantity
 
                     };
+                    ViewBag.Message = null;
                     return View("OrderSunglasses", osvm);
                 }
             }
@@ -95,7 +175,7 @@ namespace NawazEyeWebProject_NEW_.Controllers
         [HttpPost]
         [AllowAnonymous]
         [ValidateAntiForgeryToken]
-        public ActionResult OrderPrescriptionGlasses(OrderPrescriptionGlassesViewModel model)
+        public ActionResult OrderPrescriptionGlasses(OrderPrescriptionGlassesViewModel model, string urlRedirect = null)
         {
             if (!ModelState.IsValid)
             {
@@ -123,10 +203,17 @@ namespace NawazEyeWebProject_NEW_.Controllers
                 Cart c = buyer.GetCurrentCart();
                 PrescriptionGlasses p = new PrescriptionGlasses(productId);
                 c.AddPrescriptionglasses(p, model.Quantity, fileName, model.Lens);
-                string path = ConfigurationManager.AppSettings["PrescriptionsPath"] + fileName;
+                string path = Server.MapPath(ConfigurationManager.AppSettings["PrescriptionsPath"] + fileName);
                 model.Prescription.SaveAs(path);
                 p.Quantity -= model.Quantity;
-                return RedirectToAction("Index");
+                if (urlRedirect == null)
+                {
+                    return RedirectToAction("Index", "Home");
+                }
+                else
+                {
+                    return Redirect(urlRedirect);
+                }
             }
             else
             {
@@ -137,6 +224,15 @@ namespace NawazEyeWebProject_NEW_.Controllers
                 string path = url + fileName;
                 model.Prescription.SaveAs(path);
                 p.Quantity -= model.Quantity;
+                if (urlRedirect != null && Request.IsAuthenticated)
+                {
+                    return Redirect(urlRedirect);
+                }
+                else if (Request.IsAuthenticated)
+                {
+                    return RedirectToAction("Index", "Home");
+
+                }
                 Order order = new Order(c, DateTime.Now);
                 OrderSuccessViewModel osvm = new OrderSuccessViewModel()
                 {
@@ -153,7 +249,7 @@ namespace NawazEyeWebProject_NEW_.Controllers
         [HttpPost]
         [AllowAnonymous]
         [ValidateAntiForgeryToken]
-        public ActionResult OrderSunglasses(OrderSunglassesViewModel model)
+        public ActionResult OrderSunglasses(OrderSunglassesViewModel model, string urlRedirect = null)
         {
             if (!ModelState.IsValid)
             {
@@ -181,7 +277,15 @@ namespace NawazEyeWebProject_NEW_.Controllers
                 Sunglasses s = new Sunglasses(productId);
                 c.AddSunglasses(s, model.Quantity);
                 s.Quantity -= model.Quantity;
-                return RedirectToAction("Index");
+                if (urlRedirect != null)
+                {
+                    return Redirect(urlRedirect);
+                }
+                else
+                {
+                    return RedirectToAction("Index", "Home");
+
+                }
             }
             else
             {
@@ -189,6 +293,14 @@ namespace NawazEyeWebProject_NEW_.Controllers
                 Sunglasses s = new Sunglasses(productId);
                 c.AddSunglasses(s, model.Quantity);
                 s.Quantity -= model.Quantity;
+                if (urlRedirect != null)
+                {
+                    return Redirect(urlRedirect);
+                }
+                else if (Request.IsAuthenticated)
+                {
+                    return RedirectToAction("Index", "Home");
+                }
                 Order order = new Order(c, DateTime.Now);
                 OrderSuccessViewModel osvm = new OrderSuccessViewModel()
                 {
@@ -201,6 +313,43 @@ namespace NawazEyeWebProject_NEW_.Controllers
                 };
                 return View("OrderSuccess", osvm);
             }
+        }
+        [HttpPost]
+        [ValidateAntiForgeryToken]
+        public ActionResult OrderUser(string promo, int cartId)
+        {
+            Buyer b = new Account(User.Identity.GetUserId()).Buyer;
+            Cart c = new Cart(cartId);
+            Order o;
+            if (promo == null || promo == "")
+            {
+                o = new Order(c, DateTime.Now);
+                c.IsCurrent = false;
+            }
+            else
+            {
+                PromoCode p = new PromoCode(promo);
+                o = new Order(c, DateTime.Now, p);
+                c.IsCurrent = false;
+            }
+            OrderSuccessViewModel osvm = new OrderSuccessViewModel()
+            {
+                BuyersName = b.Name,
+                DeliveryCharges = decimal.Round(b.City.DeliverCharges).ToString(),
+                DiscountAvailed = o.Promo.Discount + "%",
+                OrderId = o.OrderId.ToString(),
+                Status = o.Status,
+                TotalPrice = decimal.Round(o.TotalPrice).ToString()
+            };
+            return View("OrderSuccess", osvm);
+        }
+        public ActionResult DeleteCartItem(int itemId, int cartId, int quantity)
+        {
+            Cart c = new Cart(cartId);
+            c.DeleteItem(itemId);
+            Product p = new Product(itemId);
+            p.Quantity += quantity;
+            return RedirectToAction("Index");
         }
     }
 }

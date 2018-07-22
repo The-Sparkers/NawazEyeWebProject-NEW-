@@ -1,11 +1,12 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.ComponentModel.DataAnnotations;
+using System.Configuration;
 using System.Web;
 
 namespace NawazEyeWebProject_NEW_.ViewModels
 {
-    
+
     public class BuyersInfoViewModel
     {
         [Required]
@@ -44,7 +45,7 @@ namespace NawazEyeWebProject_NEW_.ViewModels
         public string Lens { get; set; }
         [Display(Name = "Status")]
         public string Status { get; set; }
-        [Display(Name ="Number of Items")]
+        [Display(Name = "Number of Items")]
         [Required]
         public int Quantity
         {
@@ -54,10 +55,10 @@ namespace NawazEyeWebProject_NEW_.ViewModels
             }
             set
             {
-                quantity = "" + value; 
+                quantity = "" + value;
             }
         }
-        [Display(Name ="Prescription")]
+        [Display(Name = "Prescription")]
         [Required]
         public HttpPostedFileBase Prescription { get; set; }
         public string DeliveryCharges { get; set; }
@@ -82,15 +83,15 @@ namespace NawazEyeWebProject_NEW_.ViewModels
     }
     public class OrderSuccessViewModel
     {
-        [Display(Name ="Order Id")]
+        [Display(Name = "Order Id")]
         public string OrderId { get; set; }
-        [Display(Name ="Discount Availed")]
+        [Display(Name = "Discount Availed")]
         public string DiscountAvailed { get; set; }
-        [Display(Name ="Total Price")]
+        [Display(Name = "Total Price")]
         public string TotalPrice { get; set; }
-        [Display(Name ="Delivery Charges")]
+        [Display(Name = "Delivery Charges")]
         public string DeliveryCharges { get; set; }
-        [Display(Name ="Order Status")]
+        [Display(Name = "Order Status")]
         public string Status { get; set; }
         public string BuyersName { get; set; }
         [Display(Name = "Grand Total")]
@@ -99,6 +100,53 @@ namespace NawazEyeWebProject_NEW_.ViewModels
             get
             {
                 return decimal.Add(Convert.ToDecimal(TotalPrice), Convert.ToDecimal(DeliveryCharges)).ToString();
+            }
+        }
+    }
+    public class ViewCartViewModel
+    {
+        public string Id { get; set; }
+        public string DeliveryCharges { get; set; }
+        public List<ProductListViewModel> ItemsInCart { get; set; }
+        public string GTotal
+        {
+            get
+            {
+                int total=0;
+                foreach (var item in ItemsInCart)
+                {
+                    int x = Convert.ToInt32(item.Price);
+                    total += x;
+                }
+                return total.ToString();
+            }
+        }
+        public bool IsCart { get; set; }
+    }
+    public class ProductListViewModel
+    {
+        string image;
+        public int ItemId { get; set; }
+        public string Name { get; set; }
+        public string Price { get; set; }
+        public string Quantity { get; set; }
+        public string Image
+        {
+            get
+            {
+                string path = ConfigurationManager.AppSettings["ItemsImagePath"] + image;
+                return path;
+            }
+            set
+            {
+                image = value;
+            }
+        }
+        public string TotalPrice
+        {
+            get
+            {
+                return (Convert.ToUInt32(Quantity) * Convert.ToUInt32(Price)).ToString();
             }
         }
     }

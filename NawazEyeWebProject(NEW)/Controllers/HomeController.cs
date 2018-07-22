@@ -75,9 +75,11 @@ namespace NawazEyeWebProject_NEW_.Controllers
             return View(model);
         }
         [HttpGet]
-        public ActionResult ViewProduct(int id)
+        public ActionResult ViewProduct(int id, string urlRedirect)
         {
+            ViewBag.Message = urlRedirect;
             ViewProductViewModel model = new ViewProductViewModel();
+            ViewBag.Message = urlRedirect;
             if (Product.IsPrescriptionGlasses(id))
             {
                 PrescriptionGlasses p = new PrescriptionGlasses(id);

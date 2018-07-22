@@ -210,6 +210,7 @@
     <Content Include="images\Accounts\loginAccount.jpg" />
     <Content Include="images\Accounts\registerAccount.jpg" />
     <Content Include="images\Accounts\registerExternalLogin.jpg" />
+    <Content Include="images\Cart\cartIndex.jpg" />
     <Content Include="images\Cart\orderSuccess.jpg" />
     <Content Include="images\Cart\registerBuyer.jpg" />
     <Content Include="images\Home\parallexImage.jpg" />
@@ -221,6 +222,8 @@
     <Content Include="images\Shared\baby-boy-child-838879.jpg" />
     <Content Include="images\Shared\boy-bright-close-up-792326.jpg" />
     <Content Include="images\Shared\HeadLogo.png" />
+    <Content Include="images\Shared\Image for Prescription Glasses.jpg" />
+    <Content Include="images\Shared\Image for Sunglasses.jpg" />
     <Content Include="images\Uploads\2003_805289126577_shad_fr.jpg" />
     <Content Include="images\Uploads\2003_images.jpg" />
     <Content Include="images\Uploads\2003_PoL019_IMG00009_270x180_crop_center%402x.jpg" />

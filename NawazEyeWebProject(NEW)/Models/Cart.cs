@@ -279,6 +279,39 @@ namespace NawazEyeWebProject_NEW_.Models
                 throw e;
             }
         }
+        public bool DeleteItem(int itemId)
+        {
+            try
+            {
+                SqlConnection con = new SqlConnection(ConfigurationManager.ConnectionStrings["conString"].ConnectionString);
+                string query = "delete from CART_HAS_PRESCRPTION_GLASSES where ProductId=" + itemId + "; delete from CART_HAS_SUNGLASSES where ProductId = " + itemId;
+                SqlCommand cmd = new SqlCommand(query, con);
+                con.Open();
+                if (cmd.ExecuteNonQuery() == 1)
+                {
+                    con.Close();
+                    if (GetItemsCount() == 0)
+                    {
+                        Delete();
+                    }
+                    return true;
+                }
+                else if (cmd.ExecuteNonQuery() < 1)
+                {
+                    con.Close();
+                    return false;
+                }
+                else
+                {
+                    throw new Exception("Something Went Wrong in deleting.");
+                }
+            }
+            catch (SqlException ex)
+            {
+                Exception e = new Exception("Database Connection Error. " + ex.Message);
+                throw e;
+            }
+        }
 
     }
     public class CartSunglasses

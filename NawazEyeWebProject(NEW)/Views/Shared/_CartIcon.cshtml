@@ -8,14 +8,14 @@
     Account a = new Account(userId);
     if (a.Buyer.GetCurrentCart() != null)
     {
-        <a href="Cart\Index"><span class="glyphicon glyphicon-shopping-cart"></span>(@a.Buyer.GetCurrentCart().GetItemsCount())</a>
+        <a href="@Url.Action("Index","Cart")"><span class="glyphicon glyphicon-shopping-cart"></span>(@a.Buyer.GetCurrentCart().GetItemsCount())</a>
     }
     else
     {
-        <a href="Cart\Index"><span class="glyphicon glyphicon-shopping-cart"></span>(0)</a>
+        <a href="@Url.Action("Index","Cart")"><span class="glyphicon glyphicon-shopping-cart"></span>(0)</a>
     }
 }
 else
 {
-    <a href="Cart\Index"><span class="glyphicon glyphicon-shopping-cart"></span></a>
+    <a href="@Url.Action("Index","Cart")"><span class="glyphicon glyphicon-shopping-cart"></span></a>
 }

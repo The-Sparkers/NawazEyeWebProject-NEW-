@@ -1,8 +1,54 @@
-﻿
+﻿@model NawazEyeWebProject_NEW_.ViewModels.ViewCartViewModel
 @{
-    ViewBag.Title = "Index";
+    ViewBag.Title = "Cart";
     Layout = "~/Views/Shared/_Layout.cshtml";
 }
-
-<h2>Index</h2>
-
+<div class="col-md-6">
+    <img src="~/images/Cart/cartIndex.jpg" class="img-responsive" />
+</div>
+<div class="col-md-6">
+    @if (!Model.IsCart || Model.ItemsInCart == null) 
+    {
+        <h2>There's no Item is in your cart.</h2>
+    }
+    else
+    {
+        <table class="table table-responsive">
+            <tr>
+                <th>Item Name</th>
+                <th>Price (Rs.)</th>
+                <th>Quantity</th>
+                <th>Total Price (Rs.)</th>
+                <th>Display</th>
+                <th>Action</th>
+            </tr>
+            @foreach (var item in Model.ItemsInCart)
+            {
+                <tr>
+                    <td>@item.Name</td>
+                    <td>@item.Price</td>
+                    <td>@item.Quantity</td>
+                    <td>@item.TotalPrice</td>
+                    <td><img class="img-thumbnail" src="@Url.Content(item.Image)" /></td>
+                    <td>@Html.ActionLink("Delete", "DeleteCartItem", new { itemId = @item.ItemId, cartId=@Model.Id, quantity=@item.Quantity }, new { @class = "addToCartBtn" })</td>
+                </tr>
+            }
+        </table>
+        <div class="col-lg-6">
+            <h3>G.Total: Rs. @Model.GTotal</h3>
+        </div>
+        <div class="col-md-6">
+            @using (Html.BeginForm("OrderUser", "Cart", new { cartId = Model.Id }, FormMethod.Post, new { id = "MakeOrderForm", @class = "form-horizontal" }))
+            {
+                @Html.AntiForgeryToken()
+                <div class="form-group">
+                    <input type="text" class="form-control" name="promo" placeholder="Enter Promo Code Here" value="" />
+                </div>
+                <a href="javascript:document.getElementById('MakeOrderForm').submit()" class="OrderNowBtn col-md-offset-4">Confirm Order</a>
+            }
+        </div>
+        <div class="col-md-12">
+            <h6>*Rs. @Model.DeliveryCharges will be added as Delivery Charges for your City. These charges may vary from city to city.</h6>
+        </div>
+    }
+</div>

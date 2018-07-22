@@ -3,6 +3,7 @@
 @{
     ViewBag.Title = Model.Name;
     Layout = "~/Views/Shared/_Layout.cshtml";
+    string urlRedirect = ViewBag.Message;
     List<SelectListItem> lst = new List<SelectListItem>();
     for (int i = 1; i <= Model.Quantity; i++)
     {
@@ -58,7 +59,7 @@
             <td align="right"><h6>@Model.Status</h6></td>
         </tr>
     </table>
-    @using (Html.BeginForm("OrderPrescriptionGlasses", "Cart", FormMethod.Post, new { @class = "form-horizontal", role = "form", enctype = "multipart/form-data" }))
+    @using (Html.BeginForm("OrderPrescriptionGlasses", "Cart", new { @urlRedirect = urlRedirect }, FormMethod.Post, new { @class = "form-horizontal", role = "form", enctype = "multipart/form-data" }))
     {
         @Html.AntiForgeryToken();
         @Html.HiddenFor(m => m.DiscountedPrice);
@@ -71,7 +72,7 @@
         <div class="form-group">
             @Html.LabelFor(m => m.Lens, new { @class = "col-md-4 control-label" })
             <div class="col-md-8">
-                @Html.DropDownListFor(m=>m.Lens, lstLensName, new { @class = "form-control" })
+                @Html.DropDownListFor(m => m.Lens, lstLensName, new { @class = "form-control" })
                 @Html.ValidationMessageFor(m => m.Lens, "", new { @class = "text-danger" })
             </div>
         </div>
@@ -79,17 +80,19 @@
             <div class="col-md-12">
                 @Html.LabelFor(m => m.Prescription, new { @class = "col-md-4 control-label" })
                 <div class="col-md-8">
-                    <input type="file" name="Prescription" class="form-control" />
+                    <input type="file" name="Prescription" class="btn btn-block"/>
                     @Html.ValidationMessageFor(m => m.Prescription, "", new { @class = "text-danger" })
                 </div>
             </div>
         </div>
         <div class="form-group">
-            <div class="col-md-4">
+            <div class="col-md-12">
                 @Html.DropDownListFor(m => m.Quantity, lst, "Select Quantity", new { @class = "form-control" })
                 @Html.ValidationMessageFor(m => m.Quantity, "", new { @class = "text-danger" })
             </div>
-            <div class="col-md-8">
+        </div>
+        <div class="form-group">
+            <div class="col-md-offset-6 col-md-6">
                 <input type="submit" class="btn btn-default w3-flat-midnight-blue" value="Confirm" />
                 <h6>*Rs. @Model.DeliveryCharges will be added as Delivery Charges for your City. These charges may vary from city to city.</h6>
             </div>

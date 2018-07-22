@@ -18,8 +18,11 @@
                 </tr>
                 <tr>
                     <td class="showingItemsPrice w3-metro-darken">Rs. @item.Price</td>
-                    <td><div class="addToCartBtn"><a class="" href="@Url.Action("AddToCart", "Cart", new { id = @item.Id })">Add to Cart</a></div></td>
-                    <td><div class="viewItemBtn"><a class="" href="@Url.Action("ViewProduct", "Home", new { id = @item.Id })">View</a></div>
+                    @{ 
+                        string urlRedirect = Request.Url.AbsoluteUri;
+                    }
+                    <td><div class="addToCartBtn"><a class="" href="@Url.Action("AddToCart", "Cart", new { id = @item.Id, urlRedirect = @urlRedirect })">Add to Cart</a></div></td>
+                    <td><div class="viewItemBtn"><a class="" href="@Url.Action("ViewProduct", "Home", new { id = @item.Id, urlRedirect = @urlRedirect })">View</a></div>
                 </tr>
             </table>
         </div>
@@ -27,5 +30,5 @@
 
 </div>
 <div class="col-md-3">
-    
+    <img src="~/images/Shared/Image for Sunglasses.jpg" class="img-responsive" />
 </div>

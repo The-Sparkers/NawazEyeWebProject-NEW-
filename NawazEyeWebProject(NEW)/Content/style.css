@@ -14,7 +14,7 @@ body {
     perspective: 1px;
     transform-style: preserve-3d;
     overflow-y: scroll;
-    overflow-x: hidden;
+    overflow-x: scroll;
 }
 
 .img-thumbnail-custom {
