@@ -15,8 +15,60 @@ namespace NawazEyeWebProject_NEW_.Controllers
     public class CartController : Controller
     {
         // GET: Cart
-        public ActionResult Index()
+        //public ActionResult Index()
+        //{
+        //    Cart c = new Account(User.Identity.GetUserId()).Buyer.GetCurrentCart();
+        //    ViewCartViewModel vcvm = new ViewCartViewModel();
+        //    if (c == null)
+        //    {
+        //        vcvm.IsCart = false;
+        //        return View(vcvm);
+        //    }
+        //    else
+        //    {
+        //        vcvm.IsCart = true;
+        //        vcvm.Id = c.CartId.ToString();
+        //        vcvm.DeliveryCharges = decimal.Round(c.Buyer.City.DeliverCharges).ToString();
+        //        foreach (var item in c.PrescriptionGlasses)
+        //        {
+        //            if (vcvm.ItemsInCart == null)
+        //            {
+        //                vcvm.ItemsInCart = new List<ProductListViewModel>();
+        //            }
+        //            vcvm.ItemsInCart.Add(new ProductListViewModel()
+        //            {
+        //                ItemId = item.PrescriptionGlasses.ProductId,
+        //                Name = item.PrescriptionGlasses.Name,
+        //                Price = decimal.Round(item.PrescriptionGlasses.Price).ToString(),
+        //                Quantity = item.Quantity.ToString(),
+        //                Image = item.PrescriptionGlasses.PrimaryImage
+        //            });
+        //        }
+        //        foreach (var item in c.Sunglasses)
+        //        {
+        //            if (vcvm.ItemsInCart == null)
+        //            {
+        //                vcvm.ItemsInCart = new List<ProductListViewModel>();
+        //            }
+        //            vcvm.ItemsInCart.Add(new ProductListViewModel()
+        //            {
+        //                ItemId = item.Sunglasses.ProductId,
+        //                Name = item.Sunglasses.Name,
+        //                Price = decimal.Round(item.Sunglasses.Price).ToString(),
+        //                Quantity = item.Quantity.ToString(),
+        //                Image = item.Sunglasses.PrimaryImage
+        //            });
+        //        }
+        //        return View(vcvm);
+        //    }
+        //}
+        [HttpGet]
+        public ActionResult Index(bool promoValidation = false)
         {
+            if (promoValidation)
+            {
+                ViewBag.Message = "This Promo Code is already used by you.";
+            }
             Cart c = new Account(User.Identity.GetUserId()).Buyer.GetCurrentCart();
             ViewCartViewModel vcvm = new ViewCartViewModel();
             if (c == null)
@@ -37,7 +89,7 @@ namespace NawazEyeWebProject_NEW_.Controllers
                     }
                     vcvm.ItemsInCart.Add(new ProductListViewModel()
                     {
-                        ItemId=item.PrescriptionGlasses.ProductId,
+                        ItemId = item.PrescriptionGlasses.ProductId,
                         Name = item.PrescriptionGlasses.Name,
                         Price = decimal.Round(item.PrescriptionGlasses.Price).ToString(),
                         Quantity = item.Quantity.ToString(),
@@ -52,7 +104,7 @@ namespace NawazEyeWebProject_NEW_.Controllers
                     }
                     vcvm.ItemsInCart.Add(new ProductListViewModel()
                     {
-                        ItemId=item.Sunglasses.ProductId,
+                        ItemId = item.Sunglasses.ProductId,
                         Name = item.Sunglasses.Name,
                         Price = decimal.Round(item.Sunglasses.Price).ToString(),
                         Quantity = item.Quantity.ToString(),
@@ -62,6 +114,7 @@ namespace NawazEyeWebProject_NEW_.Controllers
                 return View(vcvm);
             }
         }
+
         [HttpGet]
         public ActionResult AddToCart(int id, string urlRedirect = null)
         {
@@ -108,7 +161,7 @@ namespace NawazEyeWebProject_NEW_.Controllers
             if (Request.IsAuthenticated)
             {
                 string url = Request.UrlReferrer.AbsoluteUri;
-                return RedirectToAction("AddToCart", new { id = id, urlRedirect = url }); 
+                return RedirectToAction("AddToCart", new { id = id, urlRedirect = url });
             }
             else
             {
@@ -329,6 +382,10 @@ namespace NawazEyeWebProject_NEW_.Controllers
             else
             {
                 PromoCode p = new PromoCode(promo);
+                if (p.IsUsed(b.GetAccount()))
+                {
+                   return RedirectToAction("Index", new { promoValidation = true });
+                }
                 o = new Order(c, DateTime.Now, p);
                 c.IsCurrent = false;
             }

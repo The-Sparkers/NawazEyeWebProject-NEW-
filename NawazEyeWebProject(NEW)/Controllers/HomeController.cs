@@ -127,5 +127,9 @@ namespace NawazEyeWebProject_NEW_.Controllers
             }
             return View(model);
         }
+        public ActionResult ViewStore()
+        {
+            return View();
+        }
     }
 }

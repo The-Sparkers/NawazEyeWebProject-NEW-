@@ -3,12 +3,12 @@
 @import url(https://fonts.googleapis.com/css?family=Open+Sans);
 
 html {
-    height: 100%;
+    height: 100vh;
     overflow: hidden;
 }
 
 body {
-    height: 100%;
+    height: 100vh;
     margin: 0;
     padding: 0;
     perspective: 1px;
@@ -205,11 +205,54 @@ body {
     background-repeat: no-repeat;
     background-size: cover;
 }
+.ViewSunglasses{
+    background-image: url("/images/Home/ViewSunglasses.jpg");
+    height: 550px;
+    background-attachment: scroll;
+    background-position: center;
+    background-repeat: no-repeat;
+    background-size: cover;
+    cursor:pointer;
+}
+.ViewSunglasses:hover{
+    opacity:0.85;
+}
+.ViewFrames{
+    background-image: url("/images/Home/ViewPrescription Glasses.jpg");
+    height: 550px;
+    background-attachment: scroll;
+    background-position: center;
+    background-repeat: no-repeat;
+    background-size: cover;
+    cursor:pointer;
+}
+.ViewFrames:hover{
+    opacity:0.85;
+}
 /*@media only screen and (max-device-width: 1366px) {
     .parallax {
         background-attachment: scroll;
     }
 }*/
+.ViewSPGlassesBtn{
+    text-align: center;
+    margin-top: 450px;
+    color: #fff;
+    padding-left:10px;
+    padding-right:10px;
+
+}
+.ViewSPGlassesBtn h6 a{
+    text-decoration: none;
+    font-weight:bold;
+    font-size:24px;
+}
+.ViewSPGlassesBtn h6 a:hover{
+    text-decoration:none;
+        font-size:26px;
+        color:#fff;
+        margin-left:10px;
+}
 .parallexText {
     font-family: 'Monotype Corsiva';
     color: #fff;
@@ -325,7 +368,7 @@ body {
 
 .RegisterLink {
     text-decoration: none;
-    font-size: 12px;
+    font-size: 11px;
     color: blueviolet;
 }
 

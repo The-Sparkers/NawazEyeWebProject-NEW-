@@ -217,6 +217,8 @@
     <Content Include="images\Home\SliderImg1.jpg" />
     <Content Include="images\Home\SliderImg2.jpg" />
     <Content Include="images\Home\SliderImg3.jpg" />
+    <Content Include="images\Home\ViewPrescription Glasses.jpg" />
+    <Content Include="images\Home\ViewSunglasses.jpg" />
     <Content Include="images\Shared\adult-beard-blue-1043473.jpg" />
     <Content Include="images\Shared\arm-eyeglasses-eyewear-1068866.jpg" />
     <Content Include="images\Shared\baby-boy-child-838879.jpg" />
@@ -345,6 +347,7 @@
     <Content Include="Views\Cart\OrderSuccess.cshtml" />
     <Content Include="Views\Cart\OrderSunglasses.cshtml" />
     <Content Include="Views\Shared\Close.cshtml" />
+    <Content Include="Views\Home\ViewStore.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />

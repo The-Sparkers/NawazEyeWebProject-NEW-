@@ -43,6 +43,10 @@
                 @Html.AntiForgeryToken()
                 <div class="form-group">
                     <input type="text" class="form-control" name="promo" placeholder="Enter Promo Code Here" value="" />
+                    @if (ViewBag.Message != null)
+                    {
+                        <p class="text-danger">@ViewBag.Message</p>
+                    }
                 </div>
                 <a href="javascript:document.getElementById('MakeOrderForm').submit()" class="OrderNowBtn col-md-offset-4">Confirm Order</a>
             }

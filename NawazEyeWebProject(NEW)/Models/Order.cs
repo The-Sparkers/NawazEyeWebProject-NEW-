@@ -29,7 +29,7 @@ namespace NawazEyeWebProject_NEW_.Models
                 SetValues(id);
                 if (promoCode != null)
                 {
-                    query = "INSERT INTO [ORDER_HAS_CART_WITH_PROMO] ([OrderId] ,[CartId] ,[PromoId]) VALUES (" + id + " ," + cart.CartId + " ," + promoCode.PromoId + ")";
+                    query = "INSERT INTO [ORDER_HAS_CART_WITH_PROMO] ([OrderId] ,[CartId] ,[PromoId]) VALUES (" + id + " ," + cart.CartId + " ," + promoCode.PromoId + ");INSERT INTO [dbo].[ACCOUNT_USE_PROMOS] ([PromoId] ,[BuyerId]) VALUES (" + promoCode.PromoId + " ," + cart.Buyer.BuyerId + ")";
                 }
                 else
                 {
@@ -37,7 +37,7 @@ namespace NawazEyeWebProject_NEW_.Models
                 }
                 cmd = new SqlCommand(query, con);
                 con.Open();
-                if (cmd.ExecuteNonQuery() != 1)
+                if (cmd.ExecuteNonQuery() < 1)
                 {
                     throw new Exception("Data Not Inserted correctly.");
                 }
