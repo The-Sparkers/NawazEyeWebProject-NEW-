@@ -2,8 +2,6 @@
 using NawazEyeWebProject_NEW_.ViewModels;
 using System;
 using System.Collections.Generic;
-using System.Linq;
-using System.Web;
 using System.Web.Mvc;
 
 namespace NawazEyeWebProject_NEW_.Controllers
@@ -13,19 +11,27 @@ namespace NawazEyeWebProject_NEW_.Controllers
         // GET: Sunglasses
         public ActionResult Index()
         {
-            List<ViewSunglassesViewModel> model = new List<ViewSunglassesViewModel>();
-            foreach (var item in Sunglasses.GetAllSunglasses())
+            try
             {
-                model.Add(new ViewSunglassesViewModel()
+                List<ViewSunglassesViewModel> model = new List<ViewSunglassesViewModel>();
+                foreach (var item in Sunglasses.GetAllSunglasses())
                 {
-                    Id = item.ProductId.ToString(),
-                    Name = item.Name,
-                    Image = item.PrimaryImage,
-                    Price = decimal.Round(item.Price).ToString(),
-                    Discount = item.Discount.ToString()
-                });
+                    model.Add(new ViewSunglassesViewModel()
+                    {
+                        Id = item.ProductId.ToString(),
+                        Name = item.Name,
+                        Image = item.PrimaryImage,
+                        Price = decimal.Round(item.Price).ToString(),
+                        Discount = item.Discount.ToString()
+                    });
+                }
+                return View(model);
             }
-            return View(model);
+            catch (Exception ex)
+            {
+                HandleErrorInfo error = new HandleErrorInfo(ex, "Sunglasses", "Index");
+                return RedirectToAction("Index", "Error", new { model = error });
+            }
         }
     }
 }

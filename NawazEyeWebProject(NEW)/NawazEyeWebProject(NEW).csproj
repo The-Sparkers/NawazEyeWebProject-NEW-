@@ -169,6 +169,7 @@
     <Compile Include="App_Start\Startup.Auth.cs" />
     <Compile Include="Controllers\AccountController.cs" />
     <Compile Include="Controllers\CartController.cs" />
+    <Compile Include="Controllers\ErrorController.cs" />
     <Compile Include="Controllers\FramesController.cs" />
     <Compile Include="Controllers\HomeController.cs" />
     <Compile Include="Controllers\ManageController.cs" />
@@ -231,6 +232,7 @@
     <Content Include="images\Shared\arm-eyeglasses-eyewear-1068866.jpg" />
     <Content Include="images\Shared\baby-boy-child-838879.jpg" />
     <Content Include="images\Shared\boy-bright-close-up-792326.jpg" />
+    <Content Include="images\Shared\errorImage.jpg" />
     <Content Include="images\Shared\HeadLogo.png" />
     <Content Include="images\Shared\Image for Prescription Glasses.jpg" />
     <Content Include="images\Shared\Image for Sunglasses.jpg" />
@@ -359,6 +361,7 @@
     <Content Include="Views\Manage\ChangeAddress.cshtml" />
     <Content Include="Views\Manage\ViewOrders.cshtml" />
     <Content Include="Views\Manage\ViewOderItems.cshtml" />
+    <Content Include="Views\Error\Index.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />

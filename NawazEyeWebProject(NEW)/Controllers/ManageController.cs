@@ -56,64 +56,90 @@ namespace NawazEyeWebProject_NEW_.Controllers
         // GET: /Manage/Index
         public async Task<ActionResult> Index(ManageMessageId? message)
         {
-            ViewBag.StatusMessage =
-                message == ManageMessageId.ChangePasswordSuccess ? "Your password has been changed."
-                : message == ManageMessageId.SetPasswordSuccess ? "Your password has been set."
-                : message == ManageMessageId.SetTwoFactorSuccess ? "Your two-factor authentication provider has been set."
-                : message == ManageMessageId.Error ? "An error has occurred."
-                : message == ManageMessageId.AddPhoneSuccess ? "Your phone number was added."
-                : message == ManageMessageId.RemovePhoneSuccess ? "Your phone number was removed."
-                : "";
-
-            var userId = User.Identity.GetUserId();
-            Account a = new Account(User.Identity.GetUserId());
-            var model = new IndexViewModel
+            try
             {
-                HasPassword = HasPassword(),
-                PhoneNumber = a.Buyer.PhoneNumber,
-                TwoFactor = await UserManager.GetTwoFactorEnabledAsync(userId),
-                Logins = await UserManager.GetLoginsAsync(userId),
-                BrowserRemembered = await AuthenticationManager.TwoFactorBrowserRememberedAsync(userId),
-                Address = a.Buyer.Address,
-                OrdersCount = a.Buyer.GetOrders().Count
-            };
-            return View(model);
+
+
+                ViewBag.StatusMessage =
+                    message == ManageMessageId.ChangePasswordSuccess ? "Your password has been changed."
+                    : message == ManageMessageId.SetPasswordSuccess ? "Your password has been set."
+                    : message == ManageMessageId.SetTwoFactorSuccess ? "Your two-factor authentication provider has been set."
+                    : message == ManageMessageId.Error ? "An error has occurred."
+                    : message == ManageMessageId.AddPhoneSuccess ? "Your phone number was added."
+                    : message == ManageMessageId.RemovePhoneSuccess ? "Your phone number was removed."
+                    : "";
+
+                var userId = User.Identity.GetUserId();
+                Account a = new Account(User.Identity.GetUserId());
+                var model = new IndexViewModel
+                {
+                    HasPassword = HasPassword(),
+                    PhoneNumber = a.Buyer.PhoneNumber,
+                    TwoFactor = await UserManager.GetTwoFactorEnabledAsync(userId),
+                    Logins = await UserManager.GetLoginsAsync(userId),
+                    BrowserRemembered = await AuthenticationManager.TwoFactorBrowserRememberedAsync(userId),
+                    Address = a.Buyer.Address,
+                    OrdersCount = a.Buyer.GetOrders().Count
+                };
+                return View(model);
+            }
+            catch(Exception ex)
+            {
+                HandleErrorInfo error = new HandleErrorInfo(ex, "Manage", "Index");
+                return RedirectToAction("Index", "Error", new { model = error });
+            }
         }
         public ActionResult ViewOrders()
         {
-            Buyer b = new Account(User.Identity.GetUserId()).Buyer;
-            List<Order> lstOrder = b.GetOrders();
-            List<ViewOrdersViewModel> model = new List<ViewOrdersViewModel>();
-            foreach (var item in lstOrder)
+            try
             {
-                model.Add(new ViewOrdersViewModel()
+                Buyer b = new Account(User.Identity.GetUserId()).Buyer;
+                List<Order> lstOrder = b.GetOrders();
+                List<ViewOrdersViewModel> model = new List<ViewOrdersViewModel>();
+                foreach (var item in lstOrder)
                 {
-                    DispatchDate = item.DispatchDate.ToShortDateString(),
-                    OrderDate = item.OrderDate.ToShortDateString(),
-                    Status = item.Status,
-                    TotalPrice = decimal.Round(item.TotalPrice).ToString(),
-                    DeliveryCharges = decimal.Round(b.City.DeliverCharges).ToString(),
-                    Id=item.Cart.CartId
-                });
+                    model.Add(new ViewOrdersViewModel()
+                    {
+                        DispatchDate = item.DispatchDate.ToShortDateString(),
+                        OrderDate = item.OrderDate.ToShortDateString(),
+                        Status = item.Status,
+                        TotalPrice = decimal.Round(item.TotalPrice).ToString(),
+                        DeliveryCharges = decimal.Round(b.City.DeliverCharges).ToString(),
+                        Id = item.Cart.CartId
+                    });
+                }
+                return View(model);
             }
-            return View(model);
+            catch (Exception ex)
+            {
+                HandleErrorInfo error = new HandleErrorInfo(ex, "Manage", "ViewOrders");
+                return RedirectToAction("Index", "Error", new { model = error });
+            }
         }
         [HttpGet]
         public ActionResult ViewOderItems(int id)
         {
-            Cart c = new Cart(id);
-            List<ViewOrderItemsViewModel> model = new List<ViewOrderItemsViewModel>();
-            foreach (var item in c.PrescriptionGlasses)
+            try
             {
-                model.Add(new ViewOrderItemsViewModel()
+                Cart c = new Cart(id);
+                List<ViewOrderItemsViewModel> model = new List<ViewOrderItemsViewModel>();
+                foreach (var item in c.PrescriptionGlasses)
                 {
-                    Image = item.PrescriptionGlasses.PrimaryImage,
-                    Name = item.PrescriptionGlasses.Name,
-                    Price = decimal.Round(item.PrescriptionGlasses.Price).ToString(),
-                    Quantity = item.Quantity.ToString()
-                });
+                    model.Add(new ViewOrderItemsViewModel()
+                    {
+                        Image = item.PrescriptionGlasses.PrimaryImage,
+                        Name = item.PrescriptionGlasses.Name,
+                        Price = decimal.Round(item.PrescriptionGlasses.Price).ToString(),
+                        Quantity = item.Quantity.ToString()
+                    });
+                }
+                return View(model);
             }
-            return View(model);
+            catch (Exception ex)
+            {
+                HandleErrorInfo error = new HandleErrorInfo(ex, "Manage", "ViewOderItems");
+                return RedirectToAction("Index", "Error", new { model = error });
+            }
         }
         //
         // POST: /Manage/RemoveLogin
@@ -143,7 +169,16 @@ namespace NawazEyeWebProject_NEW_.Controllers
         // GET: /Manage/AddPhoneNumber
         public ActionResult AddPhoneNumber()
         {
-            return View();
+            try
+            {
+                return View();
+            }
+            catch (Exception ex)
+            {
+                HandleErrorInfo error = new HandleErrorInfo(ex, "Manage", "AddPhoneNumber");
+                return RedirectToAction("Index", "Error", new { model = error });
+            }
+
         }
 
         //
@@ -152,13 +187,22 @@ namespace NawazEyeWebProject_NEW_.Controllers
         [ValidateAntiForgeryToken]
         public ActionResult AddPhoneNumber(AddPhoneNumberViewModel model)
         {
-            if (!ModelState.IsValid)
+            try
             {
-                return View(model);
+                if (!ModelState.IsValid)
+                {
+                    return View(model);
+                }
+                Account a = new Account(User.Identity.GetUserId());
+                a.Buyer.PhoneNumber = model.Number;
+                return RedirectToAction("Index");
             }
-            Account a = new Account(User.Identity.GetUserId());
-            a.Buyer.PhoneNumber = model.Number;
-            return RedirectToAction("Index");
+            catch (Exception ex)
+            {
+                HandleErrorInfo error = new HandleErrorInfo(ex, "Manage", "AddPhoneNumber");
+                return RedirectToAction("Index", "Error", new { model = error });
+            }
+
         }
 
         //
@@ -248,7 +292,15 @@ namespace NawazEyeWebProject_NEW_.Controllers
         // GET: /Manage/ChangePassword
         public ActionResult ChangePassword()
         {
-            return View();
+            try
+            {
+                return View();
+            }
+            catch (Exception ex)
+            {
+                HandleErrorInfo error = new HandleErrorInfo(ex, "Manage", "ChangePassword");
+                return RedirectToAction("Index", "Error", new { model = error });
+            }
         }
 
         //
@@ -257,29 +309,45 @@ namespace NawazEyeWebProject_NEW_.Controllers
         [ValidateAntiForgeryToken]
         public async Task<ActionResult> ChangePassword(ChangePasswordViewModel model)
         {
-            if (!ModelState.IsValid)
+            try
             {
+                if (!ModelState.IsValid)
+                {
+                    return View(model);
+                }
+                var result = await UserManager.ChangePasswordAsync(User.Identity.GetUserId(), model.OldPassword, model.NewPassword);
+                if (result.Succeeded)
+                {
+                    var user = await UserManager.FindByIdAsync(User.Identity.GetUserId());
+                    if (user != null)
+                    {
+                        await SignInManager.SignInAsync(user, isPersistent: false, rememberBrowser: false);
+                    }
+                    return RedirectToAction("Index", new { Message = ManageMessageId.ChangePasswordSuccess });
+                }
+                AddErrors(result);
                 return View(model);
             }
-            var result = await UserManager.ChangePasswordAsync(User.Identity.GetUserId(), model.OldPassword, model.NewPassword);
-            if (result.Succeeded)
+            catch (Exception ex)
             {
-                var user = await UserManager.FindByIdAsync(User.Identity.GetUserId());
-                if (user != null)
-                {
-                    await SignInManager.SignInAsync(user, isPersistent: false, rememberBrowser: false);
-                }
-                return RedirectToAction("Index", new { Message = ManageMessageId.ChangePasswordSuccess });
+                HandleErrorInfo error = new HandleErrorInfo(ex, "Manage", "ChangePassword");
+                return RedirectToAction("Index", "Error", new { model = error });
             }
-            AddErrors(result);
-            return View(model);
         }
 
         //
         // GET: /Manage/SetPassword
         public ActionResult SetPassword()
         {
-            return View();
+            try
+            {
+                return View();
+            }
+            catch (Exception ex)
+            {
+                HandleErrorInfo error = new HandleErrorInfo(ex, "Manage", "SetPassword");
+                return RedirectToAction("Index", "Error", new { model = error });
+            }
         }
 
         //
@@ -288,63 +356,95 @@ namespace NawazEyeWebProject_NEW_.Controllers
         [ValidateAntiForgeryToken]
         public async Task<ActionResult> SetPassword(SetPasswordViewModel model)
         {
-            if (ModelState.IsValid)
+            try
             {
-                var result = await UserManager.AddPasswordAsync(User.Identity.GetUserId(), model.NewPassword);
-                if (result.Succeeded)
+                if (ModelState.IsValid)
                 {
-                    var user = await UserManager.FindByIdAsync(User.Identity.GetUserId());
-                    if (user != null)
+                    var result = await UserManager.AddPasswordAsync(User.Identity.GetUserId(), model.NewPassword);
+                    if (result.Succeeded)
                     {
-                        await SignInManager.SignInAsync(user, isPersistent: false, rememberBrowser: false);
+                        var user = await UserManager.FindByIdAsync(User.Identity.GetUserId());
+                        if (user != null)
+                        {
+                            await SignInManager.SignInAsync(user, isPersistent: false, rememberBrowser: false);
+                        }
+                        return RedirectToAction("Index", new { Message = ManageMessageId.SetPasswordSuccess });
                     }
-                    return RedirectToAction("Index", new { Message = ManageMessageId.SetPasswordSuccess });
+                    AddErrors(result);
                 }
-                AddErrors(result);
-            }
 
-            // If we got this far, something failed, redisplay form
-            return View(model);
+                // If we got this far, something failed, redisplay form
+                return View(model);
+            }
+            catch (Exception ex)
+            {
+                HandleErrorInfo error = new HandleErrorInfo(ex, "Manage", "SetPassword");
+                return RedirectToAction("Index", "Error", new { model = error });
+            }
         }
 
         //
         // GET: /Manage/ManageLogins
         public async Task<ActionResult> ManageLogins(ManageMessageId? message)
         {
-            ViewBag.StatusMessage =
-                message == ManageMessageId.RemoveLoginSuccess ? "The external login was removed."
-                : message == ManageMessageId.Error ? "An error has occurred."
-                : "";
-            var user = await UserManager.FindByIdAsync(User.Identity.GetUserId());
-            if (user == null)
+            try
             {
-                return View("Error");
+                ViewBag.StatusMessage =
+                    message == ManageMessageId.RemoveLoginSuccess ? "The external login was removed."
+                    : message == ManageMessageId.Error ? "An error has occurred."
+                    : "";
+                var user = await UserManager.FindByIdAsync(User.Identity.GetUserId());
+                if (user == null)
+                {
+                    return View("Error");
+                }
+                var userLogins = await UserManager.GetLoginsAsync(User.Identity.GetUserId());
+                var otherLogins = AuthenticationManager.GetExternalAuthenticationTypes().Where(auth => userLogins.All(ul => auth.AuthenticationType != ul.LoginProvider)).ToList();
+                ViewBag.ShowRemoveButton = user.PasswordHash != null || userLogins.Count > 1;
+                return View(new ManageLoginsViewModel
+                {
+                    CurrentLogins = userLogins,
+                    OtherLogins = otherLogins
+                });
             }
-            var userLogins = await UserManager.GetLoginsAsync(User.Identity.GetUserId());
-            var otherLogins = AuthenticationManager.GetExternalAuthenticationTypes().Where(auth => userLogins.All(ul => auth.AuthenticationType != ul.LoginProvider)).ToList();
-            ViewBag.ShowRemoveButton = user.PasswordHash != null || userLogins.Count > 1;
-            return View(new ManageLoginsViewModel
+            catch (Exception ex)
             {
-                CurrentLogins = userLogins,
-                OtherLogins = otherLogins
-            });
+                HandleErrorInfo error = new HandleErrorInfo(ex, "Manage", "ManageLogins");
+                return RedirectToAction("Index", "Error", new { model = error });
+            }
         }
         public ActionResult ChangeAddress()
         {
-            return View();
+            try
+            {
+                return View();
+            }
+            catch (Exception ex)
+            {
+                HandleErrorInfo error = new HandleErrorInfo(ex, "Manage", "ChangeAddress");
+                return RedirectToAction("Index", "Error", new { model = error });
+            }
         }
         [HttpPost]
         [ValidateAntiForgeryToken]
         public ActionResult ChangeAddress(ChangeAddressViewModel model)
         {
-            if (!ModelState.IsValid)
+            try
             {
-                return View(model);
+                if (!ModelState.IsValid)
+                {
+                    return View(model);
+                }
+                Account a = new Account(User.Identity.GetUserId());
+                a.Buyer.Address = model.NewAddress;
+                a.Buyer.City = new City(model.CityId);
+                return RedirectToAction("Index");
             }
-            Account a = new Account(User.Identity.GetUserId());
-            a.Buyer.Address = model.NewAddress;
-            a.Buyer.City = new City(model.CityId);
-            return RedirectToAction("Index");
+            catch (Exception ex)
+            {
+                HandleErrorInfo error = new HandleErrorInfo(ex, "Manage", "ChangeAddress");
+                return RedirectToAction("Index", "Error", new { model = error });
+            }
         }
         //
         // POST: /Manage/LinkLogin
@@ -352,21 +452,37 @@ namespace NawazEyeWebProject_NEW_.Controllers
         [ValidateAntiForgeryToken]
         public ActionResult LinkLogin(string provider)
         {
-            // Request a redirect to the external login provider to link a login for the current user
-            return new AccountController.ChallengeResult(provider, Url.Action("LinkLoginCallback", "Manage"), User.Identity.GetUserId());
+            try
+            {
+                // Request a redirect to the external login provider to link a login for the current user
+                return new AccountController.ChallengeResult(provider, Url.Action("LinkLoginCallback", "Manage"), User.Identity.GetUserId());
+            }
+            catch (Exception ex)
+            {
+                HandleErrorInfo error = new HandleErrorInfo(ex, "Manage", "LinkLogin");
+                return RedirectToAction("Index", "Error", new { model = error });
+            }
         }
 
         //
         // GET: /Manage/LinkLoginCallback
         public async Task<ActionResult> LinkLoginCallback()
         {
-            var loginInfo = await AuthenticationManager.GetExternalLoginInfoAsync(XsrfKey, User.Identity.GetUserId());
-            if (loginInfo == null)
+            try
             {
-                return RedirectToAction("ManageLogins", new { Message = ManageMessageId.Error });
+                var loginInfo = await AuthenticationManager.GetExternalLoginInfoAsync(XsrfKey, User.Identity.GetUserId());
+                if (loginInfo == null)
+                {
+                    return RedirectToAction("ManageLogins", new { Message = ManageMessageId.Error });
+                }
+                var result = await UserManager.AddLoginAsync(User.Identity.GetUserId(), loginInfo.Login);
+                return result.Succeeded ? RedirectToAction("ManageLogins") : RedirectToAction("ManageLogins", new { Message = ManageMessageId.Error });
             }
-            var result = await UserManager.AddLoginAsync(User.Identity.GetUserId(), loginInfo.Login);
-            return result.Succeeded ? RedirectToAction("ManageLogins") : RedirectToAction("ManageLogins", new { Message = ManageMessageId.Error });
+            catch (Exception ex)
+            {
+                HandleErrorInfo error = new HandleErrorInfo(ex, "Manage", "LinkLoginCallback");
+                return RedirectToAction("Index", "Error", new { model = error });
+            }
         }
 
         protected override void Dispose(bool disposing)
