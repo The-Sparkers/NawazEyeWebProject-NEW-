@@ -26,7 +26,7 @@ namespace NawazEyeWebProject_NEW_.ViewModels
             {
                 if (Convert.ToInt32(discount) > 0)
                 {
-                    return discount;
+                    return "-" + discount + "%";
                 }
                 else
                 {
@@ -35,7 +35,7 @@ namespace NawazEyeWebProject_NEW_.ViewModels
             }
             set
             {
-                discount = "-" + value + "%";
+                discount = value;
             }
         }
     }
