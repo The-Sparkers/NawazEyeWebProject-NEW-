@@ -304,6 +304,29 @@ namespace NawazEyeWebProject_NEW_.Models
                 throw e;
             }
         }
+        public List<Order> GetOrders()
+        {
+            List<Order> l = new List<Order>();
+            try
+            {
+                SqlConnection con = new SqlConnection(ConfigurationManager.ConnectionStrings["conString"].ConnectionString);
+                string query = "select o.OrderId from ORDERS o, ORDER_HAS_CART_WITH_PROMO oc, CARTS c where oc.OrderId=o.OrderId and c.CartId=oc.CartId and c.BuyerId=" + id; 
+                SqlCommand cmd = new SqlCommand(query, con);
+                con.Open();
+                SqlDataReader reader = cmd.ExecuteReader();
+                while (reader.Read())
+                {
+                    l.Add(new Order((int)reader[0]));
+                }
+                con.Close();
+                return l;
+            }
+            catch (SqlException ex)
+            {
+                Exception e = new Exception("Database Connection Error. " + ex.Message);
+                throw e;
+            }
+        }
         public static List<Buyer> GetAllBuyers()
         {
             List<Buyer> l = new List<Buyer>();

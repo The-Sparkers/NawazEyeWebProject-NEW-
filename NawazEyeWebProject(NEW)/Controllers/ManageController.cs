@@ -7,6 +7,8 @@ using Microsoft.AspNet.Identity;
 using Microsoft.AspNet.Identity.Owin;
 using Microsoft.Owin.Security;
 using NawazEyeWebProject_NEW_.ViewModels;
+using NawazEyeWebProject_NEW_.Models;
+using System.Collections.Generic;
 
 namespace NawazEyeWebProject_NEW_.Controllers
 {
@@ -64,17 +66,55 @@ namespace NawazEyeWebProject_NEW_.Controllers
                 : "";
 
             var userId = User.Identity.GetUserId();
+            Account a = new Account(User.Identity.GetUserId());
             var model = new IndexViewModel
             {
                 HasPassword = HasPassword(),
-                PhoneNumber = await UserManager.GetPhoneNumberAsync(userId),
+                PhoneNumber = a.Buyer.PhoneNumber,
                 TwoFactor = await UserManager.GetTwoFactorEnabledAsync(userId),
                 Logins = await UserManager.GetLoginsAsync(userId),
-                BrowserRemembered = await AuthenticationManager.TwoFactorBrowserRememberedAsync(userId)
+                BrowserRemembered = await AuthenticationManager.TwoFactorBrowserRememberedAsync(userId),
+                Address = a.Buyer.Address,
+                OrdersCount = a.Buyer.GetOrders().Count
             };
             return View(model);
         }
-
+        public ActionResult ViewOrders()
+        {
+            Buyer b = new Account(User.Identity.GetUserId()).Buyer;
+            List<Order> lstOrder = b.GetOrders();
+            List<ViewOrdersViewModel> model = new List<ViewOrdersViewModel>();
+            foreach (var item in lstOrder)
+            {
+                model.Add(new ViewOrdersViewModel()
+                {
+                    DispatchDate = item.DispatchDate.ToShortDateString(),
+                    OrderDate = item.OrderDate.ToShortDateString(),
+                    Status = item.Status,
+                    TotalPrice = decimal.Round(item.TotalPrice).ToString(),
+                    DeliveryCharges = decimal.Round(b.City.DeliverCharges).ToString(),
+                    Id=item.Cart.CartId
+                });
+            }
+            return View(model);
+        }
+        [HttpGet]
+        public ActionResult ViewOderItems(int id)
+        {
+            Cart c = new Cart(id);
+            List<ViewOrderItemsViewModel> model = new List<ViewOrderItemsViewModel>();
+            foreach (var item in c.PrescriptionGlasses)
+            {
+                model.Add(new ViewOrderItemsViewModel()
+                {
+                    Image = item.PrescriptionGlasses.PrimaryImage,
+                    Name = item.PrescriptionGlasses.Name,
+                    Price = decimal.Round(item.PrescriptionGlasses.Price).ToString(),
+                    Quantity = item.Quantity.ToString()
+                });
+            }
+            return View(model);
+        }
         //
         // POST: /Manage/RemoveLogin
         [HttpPost]
@@ -110,24 +150,15 @@ namespace NawazEyeWebProject_NEW_.Controllers
         // POST: /Manage/AddPhoneNumber
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public async Task<ActionResult> AddPhoneNumber(AddPhoneNumberViewModel model)
+        public ActionResult AddPhoneNumber(AddPhoneNumberViewModel model)
         {
             if (!ModelState.IsValid)
             {
                 return View(model);
             }
-            // Generate the token and send it
-            var code = await UserManager.GenerateChangePhoneNumberTokenAsync(User.Identity.GetUserId(), model.Number);
-            if (UserManager.SmsService != null)
-            {
-                var message = new IdentityMessage
-                {
-                    Destination = model.Number,
-                    Body = "Your security code is: " + code
-                };
-                await UserManager.SmsService.SendAsync(message);
-            }
-            return RedirectToAction("VerifyPhoneNumber", new { PhoneNumber = model.Number });
+            Account a = new Account(User.Identity.GetUserId());
+            a.Buyer.PhoneNumber = model.Number;
+            return RedirectToAction("Index");
         }
 
         //
@@ -298,7 +329,23 @@ namespace NawazEyeWebProject_NEW_.Controllers
                 OtherLogins = otherLogins
             });
         }
-
+        public ActionResult ChangeAddress()
+        {
+            return View();
+        }
+        [HttpPost]
+        [ValidateAntiForgeryToken]
+        public ActionResult ChangeAddress(ChangeAddressViewModel model)
+        {
+            if (!ModelState.IsValid)
+            {
+                return View(model);
+            }
+            Account a = new Account(User.Identity.GetUserId());
+            a.Buyer.Address = model.NewAddress;
+            a.Buyer.City = new City(model.CityId);
+            return RedirectToAction("Index");
+        }
         //
         // POST: /Manage/LinkLogin
         [HttpPost]

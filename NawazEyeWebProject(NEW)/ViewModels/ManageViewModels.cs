@@ -2,6 +2,8 @@
 using System.ComponentModel.DataAnnotations;
 using Microsoft.AspNet.Identity;
 using Microsoft.Owin.Security;
+using System;
+using System.Configuration;
 
 namespace NawazEyeWebProject_NEW_.ViewModels
 {
@@ -12,8 +14,72 @@ namespace NawazEyeWebProject_NEW_.ViewModels
         public string PhoneNumber { get; set; }
         public bool TwoFactor { get; set; }
         public bool BrowserRemembered { get; set; }
+        public string Address { get; set; }
+        public int OrdersCount { get; set; }
     }
-
+    public class ViewOrdersViewModel
+    {
+        DateTime dispatchDate;
+        [Display(Name ="Order Date")]
+        public string OrderDate { get; set; }
+        [Display(Name ="Dispatch Date")]
+        public string DispatchDate
+        {
+            get
+            {
+                if (dispatchDate == DateTime.Parse("1/1/9999"))
+                {
+                    return "";
+                }
+                else
+                {
+                    return dispatchDate.ToShortDateString();
+                }
+            }
+            set
+            {
+                dispatchDate = DateTime.Parse(value);
+            }
+        }
+        [Display(Name ="Order Status")]
+        public string Status { get; set; }
+        [Display(Name ="Total Price")]
+        public string TotalPrice { get; set; }
+        [Display(Name ="Delivery Charges")]
+        public string DeliveryCharges { get; set; }
+        public int Id { get; set; }
+    }
+    public class ViewOrderItemsViewModel
+    {
+        string image;
+        [Display(Name ="Item Name")]
+        public string Name { get; set; }
+        [Display(Name ="Price")]
+        public string Price { get; set; }
+        [Display(Name ="Quantity")]
+        public string Quantity { get; set; }
+        [Display(Name ="Image")]
+        public string Image
+        {
+            get
+            {
+                string path = ConfigurationManager.AppSettings["ItemsImagePath"] + image;
+                return path;
+            }
+            set
+            {
+                image = value;
+            }
+        }
+        [Display(Name ="Total Price")]
+        public string TotalPrice
+        {
+            get
+            {
+                return (Convert.ToUInt32(Quantity) * Convert.ToUInt32(Price)).ToString();
+            }
+        }
+    }
     public class ManageLoginsViewModel
     {
         public IList<UserLoginInfo> CurrentLogins { get; set; }
@@ -82,5 +148,14 @@ namespace NawazEyeWebProject_NEW_.ViewModels
     {
         public string SelectedProvider { get; set; }
         public ICollection<System.Web.Mvc.SelectListItem> Providers { get; set; }
+    }
+    public class ChangeAddressViewModel
+    {
+        [Required]
+        [Display(Name ="New Address")]
+        public string NewAddress { get; set; }
+        [Required]
+        [Display(Name ="City")]
+        public int CityId { get; set; }
     }
 }

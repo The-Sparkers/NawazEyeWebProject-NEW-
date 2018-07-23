@@ -15,53 +15,6 @@ namespace NawazEyeWebProject_NEW_.Controllers
     public class CartController : Controller
     {
         // GET: Cart
-        //public ActionResult Index()
-        //{
-        //    Cart c = new Account(User.Identity.GetUserId()).Buyer.GetCurrentCart();
-        //    ViewCartViewModel vcvm = new ViewCartViewModel();
-        //    if (c == null)
-        //    {
-        //        vcvm.IsCart = false;
-        //        return View(vcvm);
-        //    }
-        //    else
-        //    {
-        //        vcvm.IsCart = true;
-        //        vcvm.Id = c.CartId.ToString();
-        //        vcvm.DeliveryCharges = decimal.Round(c.Buyer.City.DeliverCharges).ToString();
-        //        foreach (var item in c.PrescriptionGlasses)
-        //        {
-        //            if (vcvm.ItemsInCart == null)
-        //            {
-        //                vcvm.ItemsInCart = new List<ProductListViewModel>();
-        //            }
-        //            vcvm.ItemsInCart.Add(new ProductListViewModel()
-        //            {
-        //                ItemId = item.PrescriptionGlasses.ProductId,
-        //                Name = item.PrescriptionGlasses.Name,
-        //                Price = decimal.Round(item.PrescriptionGlasses.Price).ToString(),
-        //                Quantity = item.Quantity.ToString(),
-        //                Image = item.PrescriptionGlasses.PrimaryImage
-        //            });
-        //        }
-        //        foreach (var item in c.Sunglasses)
-        //        {
-        //            if (vcvm.ItemsInCart == null)
-        //            {
-        //                vcvm.ItemsInCart = new List<ProductListViewModel>();
-        //            }
-        //            vcvm.ItemsInCart.Add(new ProductListViewModel()
-        //            {
-        //                ItemId = item.Sunglasses.ProductId,
-        //                Name = item.Sunglasses.Name,
-        //                Price = decimal.Round(item.Sunglasses.Price).ToString(),
-        //                Quantity = item.Quantity.ToString(),
-        //                Image = item.Sunglasses.PrimaryImage
-        //            });
-        //        }
-        //        return View(vcvm);
-        //    }
-        //}
         [HttpGet]
         public ActionResult Index(bool promoValidation = false)
         {

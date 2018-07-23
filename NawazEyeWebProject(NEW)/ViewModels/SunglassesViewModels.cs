@@ -1,4 +1,5 @@
-﻿using System.Configuration;
+﻿using System;
+using System.Configuration;
 
 namespace NawazEyeWebProject_NEW_.ViewModels
 {
@@ -23,7 +24,14 @@ namespace NawazEyeWebProject_NEW_.ViewModels
         {
             get
             {
-                return discount;
+                if (Convert.ToInt32(discount) > 0)
+                {
+                    return discount;
+                }
+                else
+                {
+                    return "";
+                }
             }
             set
             {

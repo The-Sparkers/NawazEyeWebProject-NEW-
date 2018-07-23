@@ -5,7 +5,7 @@
     {
         @Html.AntiForgeryToken();
 <div id="loginBtn">
-            @Html.ActionLink(User.Identity.GetUserName(), "Index", "Manage", new { @class = "w3-flat-belize-hole" })
+            @Html.ActionLink(User.Identity.GetUserName(), "Index", "Manage", routeValues: null, htmlAttributes: new { @class = "w3-flat-belize-hole" })
 </div>
         
             <a href="javascript:document.getElementById('logoutForm').submit()" class="RegisterLink">Log off</a>

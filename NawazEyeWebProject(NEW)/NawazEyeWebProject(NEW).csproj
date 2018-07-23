@@ -219,6 +219,14 @@
     <Content Include="images\Home\SliderImg3.jpg" />
     <Content Include="images\Home\ViewPrescription Glasses.jpg" />
     <Content Include="images\Home\ViewSunglasses.jpg" />
+    <Content Include="images\Manage\changeAddress.jpeg" />
+    <Content Include="images\Manage\changePassword.jpeg" />
+    <Content Include="images\Manage\changePhoneNumber.jpg" />
+    <Content Include="images\Manage\manageAccountIndex.jpg" />
+    <Content Include="images\Manage\manageLogins.jpg" />
+    <Content Include="images\Manage\setPassword.jpg" />
+    <Content Include="images\Manage\ViewOrderItems.jpg" />
+    <Content Include="images\Manage\ViewOrders.jpg" />
     <Content Include="images\Shared\adult-beard-blue-1043473.jpg" />
     <Content Include="images\Shared\arm-eyeglasses-eyewear-1068866.jpg" />
     <Content Include="images\Shared\baby-boy-child-838879.jpg" />
@@ -348,6 +356,9 @@
     <Content Include="Views\Cart\OrderSunglasses.cshtml" />
     <Content Include="Views\Shared\Close.cshtml" />
     <Content Include="Views\Home\ViewStore.cshtml" />
+    <Content Include="Views\Manage\ChangeAddress.cshtml" />
+    <Content Include="Views\Manage\ViewOrders.cshtml" />
+    <Content Include="Views\Manage\ViewOderItems.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />

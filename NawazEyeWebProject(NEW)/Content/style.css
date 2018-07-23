@@ -640,6 +640,7 @@ body {
     padding-top: 10px;
     padding-left: 5px;
         padding-right: 5px;
+        cursor:pointer;
 }
 
     .viewItemBtn a {
@@ -654,6 +655,7 @@ body {
     background-color: #930;
     text-decoration: underline;
     color: #FFF;
+    cursor:pointer;
 }
 .OrderNowBtn:hover{
     background-color: #1b2631;

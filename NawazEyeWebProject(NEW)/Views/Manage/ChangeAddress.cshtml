@@ -1,0 +1,61 @@
+﻿@model NawazEyeWebProject_NEW_.ViewModels.ChangeAddressViewModel
+@using NawazEyeWebProject_NEW_.Models
+@{
+    ViewBag.Title = "Change Address";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+    List<SelectListItem> list = new List<SelectListItem>();
+    foreach (var item in City.GetAllCities())
+    {
+        SelectListItem i = new SelectListItem()
+        {
+            Text = item.Name,
+            Value = item.CityId.ToString()
+        };
+        list.Add(i);
+    }
+}
+
+<h2>Change Address</h2>
+<div class="col-md-4">
+
+    <p class="text-info">
+        Enter your new Address Information here.
+    </p>
+
+    @using (Html.BeginForm("ChangeAddress", "Manage", FormMethod.Post, new { @class = "form-horizontal" }))
+    {
+        @Html.AntiForgeryToken()
+
+        <div class="form-horizontal">
+            <hr />
+            @Html.ValidationSummary(true, "", new { @class = "text-danger" })
+            <div class="form-group">
+                @Html.LabelFor(model => model.NewAddress, htmlAttributes: new { @class = "control-label col-md-4" })
+                <div class="col-md-8">
+                    @Html.EditorFor(model => model.NewAddress, new { htmlAttributes = new { @class = "form-control" } })
+                    @Html.ValidationMessageFor(model => model.NewAddress, "", new { @class = "text-danger" })
+                </div>
+            </div>
+
+            <div class="form-group">
+                @Html.LabelFor(model => model.CityId, htmlAttributes: new { @class = "control-label col-md-4" })
+                <div class="col-md-8">
+                    @Html.DropDownListFor(model => model.CityId, list,"Select City", new { @class = "form-control" } )
+                    @Html.ValidationMessageFor(model => model.CityId, "", new { @class = "text-danger" })
+                </div>
+            </div>
+
+            <div class="form-group">
+                <div class="col-md-offset-4 col-md-8">
+                    <input type="submit" value="Change" class="btn btn-default w3-flat-nephritis" />
+                </div>
+            </div>
+        </div>
+    }
+</div>
+<div class="col-md-8">
+    <img class="img-responsive" src="~/images/Manage/changeAddress.jpeg" />
+</div>
+@section Scripts {
+    @Scripts.Render("~/bundles/jqueryval")
+}
