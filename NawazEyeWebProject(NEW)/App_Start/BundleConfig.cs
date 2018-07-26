@@ -16,7 +16,8 @@ namespace NawazEyeWebProject_NEW_
                         "~/Scripts/npm.js",
                         "~/Scripts/hotItemsSlider.js",
                         "~/Scripts/LayoutCustomJquery.js",
-                        "~/Scripts/SearchBoxScript.js"));
+                        "~/Scripts/SearchBoxScript.js",
+                        "~/Scripts/ResponsiveScript.js"));
             bundles.Add(new ScriptBundle("~/bundles/authentications").Include(
                 "~/Scripts/FacebookAuthentication.js"));
             bundles.Add(new ScriptBundle("~/bundles/jqueryval").Include(

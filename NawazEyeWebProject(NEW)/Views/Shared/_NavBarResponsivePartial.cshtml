@@ -1,0 +1,24 @@
+﻿@{
+    string hActiveClass = "";
+    string sActiveClass = "";
+    string fActiveClass = "";
+    string controllerName = ViewContext.RouteData.Values["controller"].ToString();
+    if (controllerName == "Home")
+    {
+        hActiveClass = "menuItemActive";
+    }
+    else if (controllerName == "Sunglasses")
+    {
+        sActiveClass = "menuItemActive";
+    }
+    else if (controllerName == "Frames")
+    {
+        fActiveClass = "menuItemActive";
+    }
+}
+<ul class="menuItemsRes">
+    <li class="menuItem @hActiveClass">@Html.ActionLink("Home", "Index", "Home")</li>
+    <li class="menuItem @sActiveClass">@Html.ActionLink("Sunglasses", "Index", "Sunglasses")</li>
+    <li class="menuItem @fActiveClass">@Html.ActionLink("Frames", "Index", "Frames")</li>
+    <li class="menuItem">@Html.Partial("_LoginPartialResponsive")</li>
+</ul>

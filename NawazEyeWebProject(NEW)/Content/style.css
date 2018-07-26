@@ -459,7 +459,12 @@ body {
         margin: 10px;
         padding: 10px;
     }
-
+    .menuItemsRes li {
+        list-style-type:none;
+        margin: 10px;
+        padding: 10px;
+            text-align:center;
+    }
         .menuItems li a {
             font-size: 18px;
             font-weight: bold;
@@ -467,7 +472,13 @@ body {
             color: #fff;
             display: block;
         }
-
+        .menuItemsRes li a {
+            font-size: 18px;
+            font-weight: bold;
+            font-family: Arial, Helvetica, sans-serif;
+            color: #fff;
+            display: block;
+        }
 .menuItem:hover {
     color: #fff;
     background-color: #a63326;
@@ -481,7 +492,9 @@ body {
 .menuItems li a:hover {
     text-decoration: none;
 }
-
+.menuItemsRes li a:hover {
+    text-decoration: none;
+}
 .menuActive {
     text-outline: #900;
 }
@@ -709,4 +722,7 @@ body {
 
 .table-show-item {
     margin-bottom: 10px;
+}
+.responsiveBody{
+    overflow-x:visible
 }

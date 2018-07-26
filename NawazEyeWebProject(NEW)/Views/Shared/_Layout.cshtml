@@ -4,42 +4,74 @@
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Eye World Opticians | @ViewBag.Title</title>
+    <link rel="stylesheet" href="https://fonts.googleapis.com/icon?family=Material+Icons">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
     @Styles.Render("~/Content/css")
 </head>
-<body>
+<body id="body">
+    <!--Start of Mobile Responsive Header-->
+    <div id="resHeader">
+        <div class="container-fluid w3-flat-pomegranate" style="text-align:center">
+            <div class="row">
+                <div class="col-xs-2">
+                    <h3> <i class="material-icons menuItem" id="navBtn">menu</i></h3>
+                </div>
+                <div class="col-xs-6" onclick="ToHome()">
+                    <h3><font face="Comic Sans MS, cursive">Eye World</font></h3>
+                </div>
+                <div class="col-xs-1">
+                    <a class="menuItem" href="@Url.Action("Index", "Manage", routeValues: null)"><h3><span class="glyphicon glyphicon-user"></span></h3></a>
+                </div>
+                <div class="col-xs-3 menuItem">
+                    <h3>@Html.Partial("_CartIcon")</h3>
+                </div>
+            </div>
+        </div>
+    <!--Mobile Responsive Menu-->
+        <div class="container-fluid" id="navResponsive">
+            <div class="row">
+                <div class="col-xs-12 w3-flat-pomegranate" style="opacity:0.9">
+                    @Html.Partial("_NavBarResponsivePartial")
+                </div>
+            </div>
+        </div>
+    <!--End of Mobile Responsive Menu-->
+    </div>
+    <!--End of Mobile Responsive Header-->
     <!--Header-->
-    <div id="header" class="container-fluid headerContainer w3-flat-clouds">
-        <div class="row">
-            <div class="col-md-8 col-lg-8 col-sm-8 col-xs-8 SearchBox">
-                @*<img src="../images/Shared/HeadLogo.png" class="img-circle" width="125" height="40" />*@
-            </div>
-            <div class="col-md-2 col-lg-2 col-sm-2 col-xs-2" id="addressBar" align="center">
-                <p class="headitems">Need Help?<br /><span class="glyphicon glyphicon-phone"></span>&nbsp;030123456789</p>
-            </div>
-            <div class="col-md-2 col-lg-2 col-sm-2 col-xs-2 headitems" align="right">
-                @Html.Partial("_LoginPartial")
+    <div id="mainContainer">
+        <div id="header" class="container-fluid headerContainer w3-flat-clouds">
+            <div class="row">
+                <div class="col-md-8 col-lg-8 col-sm-8 col-xs-8 SearchBox">
+                    @*<img src="../images/Shared/HeadLogo.png" class="img-circle" width="125" height="40" />*@
+                </div>
+                <div class="col-md-2 col-lg-2 col-sm-2 col-xs-2" id="addressBar" align="center">
+                    <p class="headitems">Need Help?<br /><span class="glyphicon glyphicon-phone"></span>&nbsp;030123456789</p>
+                </div>
+                <div class="col-md-2 col-lg-2 col-sm-2 col-xs-2 headitems" align="right">
+                    @Html.Partial("_LoginPartial")
 
+                </div>
+            </div>
+        </div>
+        <div class="container-fluid menu">
+            <div class="row">
+                <div class="col-md-4 col-lg-4 col-sm-4 col-xs-4">
+                    <!--Logo-->
+                    <table>
+                        <tr>
+                            <td class="w3-flat-pomegranate" id="logo"><h2><font color="#FFFFFF" face="Comic Sans MS, cursive">Eye World</font></h2><h4 align="center">Opticians</h4></td>
+                        </tr>
+                    </table>
+                </div>
+                <!--Menu-->
+                <div class="col-lg-8 col-sm-8 col-xs-8 col-md-8">
+                    @Html.Partial("_NavBarPartial")
+                </div>
             </div>
         </div>
     </div>
     <!--Menu & Logo-->
-    <div class="container-fluid menu">
-        <div class="row">
-            <div class="col-md-4 col-lg-4 col-sm-4 col-xs-4">
-                <!--Logo-->
-                <table>
-                    <tr>
-                        <td class="w3-flat-pomegranate" id="logo"><h2><font color="#FFFFFF" face="Comic Sans MS, cursive">Eye World</font></h2><h4 align="center">Opticians</h4></td>
-                    </tr>
-                </table>
-            </div>
-            <!--Menu-->
-            <div class="col-lg-8 col-sm-8 col-xs-8 col-md-8">
-                @Html.Partial("_NavBarPartial")
-            </div>
-        </div>
-    </div>
     <!--Start of Body-->
     <div class="container-fluid">
         <div class="row">
@@ -90,5 +122,18 @@
     @Scripts.Render("~/bundles/modernizr")
     @Scripts.Render("~/bundles/customScripts")
     @RenderSection("Scripts", required: false)
+    <script>
+        function ToHome() {
+            window.location = '@Url.Action("Index","Home")';
+        }
+        function goToSunglasses() {
+            location.href = '@Url.Action("Index","Sunglasses")';
+
+        }
+        function goToFrames() {
+            location.href = '@Url.Action("Index","Frames")';
+
+        }
+    </script>
 </body>
 </html>
