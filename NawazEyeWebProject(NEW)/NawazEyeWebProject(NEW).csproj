@@ -228,11 +228,6 @@
     <Content Include="images\Manage\setPassword.jpg" />
     <Content Include="images\Manage\ViewOrderItems.jpg" />
     <Content Include="images\Manage\ViewOrders.jpg" />
-    <Content Include="images\Shared\adult-beard-blue-1043473.jpg" />
-    <Content Include="images\Shared\arm-eyeglasses-eyewear-1068866.jpg" />
-    <Content Include="images\Shared\baby-boy-child-838879.jpg" />
-    <Content Include="images\Shared\boy-bright-close-up-792326.jpg" />
-    <Content Include="images\Shared\errorImage.jpg" />
     <Content Include="images\Shared\HeadLogo.png" />
     <Content Include="images\Shared\Image for Prescription Glasses.jpg" />
     <Content Include="images\Shared\Image for Sunglasses.jpg" />
@@ -279,6 +274,7 @@
     <Content Include="Scripts\bootstrap.js" />
     <Content Include="Scripts\bootstrap.min.js" />
     <Content Include="Scripts\hotItemsSlider.js" />
+    <None Include="Properties\PublishProfiles\abc.pubxml" />
     <None Include="Properties\PublishProfiles\Test_server.pubxml" />
     <None Include="Scripts\jquery-1.10.2.intellisense.js" />
     <Content Include="Scripts\ImageGallery.js" />
@@ -299,7 +295,9 @@
     <None Include="Scripts\_references.js" />
     <Content Include="Scripts\ResponsiveScript.js" />
     <Content Include="Scripts\SearchBoxScript.js" />
-    <Content Include="Web.config" />
+    <Content Include="Web.config">
+      <SubType>Designer</SubType>
+    </Content>
     <Content Include="Web.Debug.config">
       <DependentUpon>Web.config</DependentUpon>
     </Content>
